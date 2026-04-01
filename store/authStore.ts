@@ -7,6 +7,7 @@ interface AuthState {
   user: User | null;
   initialized: boolean;
   setUser: (user: User | null) => void;
+  updateUser: (updates: Partial<User>) => void;
   setInitialized: (val: boolean) => void;
   logout: () => Promise<void>;
 }
@@ -16,6 +17,9 @@ export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   initialized: false,
   setUser: (user) => set({ user, isAuthenticated: !!user }),
+  updateUser: (updates) => set((state) => ({ 
+    user: state.user ? { ...state.user, ...updates } as User : null 
+  })),
   setInitialized: (initialized) => set({ initialized }),
   logout: async () => {
     try {
