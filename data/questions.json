@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "category": "Traffic Rules",
+    "question": {
+      "en": "What does a red traffic light signify?",
+      "np": "रातो ट्राफिक बत्तीले के संकेत गर्छ?"
+    },
+    "options": [
+      { "id": "A", "en": "Stop", "np": "रोक्नुहोस्" },
+      { "id": "B", "en": "Go", "np": "जानुहोस्" },
+      { "id": "C", "en": "Wait", "np": "पर्खनुहोस्" },
+      { "id": "D", "en": "Turn left", "np": "बायाँ मोड्नुहोस्" }
+    ],
+    "correctOptionId": "A",
+    "weightage": "A"
+  },
+  {
+    "id": "2",
+    "category": "Traffic Rules",
+    "question": {
+      "en": "When should you overtake a vehicle?",
+      "np": "तपाईंले कुन अवस्थामा अर्को सवारी साधनलाई उछिन्ने गर्नुपर्छ?"
+    },
+    "options": [
+      { "id": "A", "en": "On a curve", "np": "घुम्तीमा" },
+      { "id": "B", "en": "When the road ahead is clear", "np": "अगाडिको बाटो सफा हुँदा" },
+      { "id": "C", "en": "At an intersection", "np": "चौबाटोमा" },
+      { "id": "D", "en": "Anytime", "np": "जुनसुकै बेला" }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "3",
+    "category": "Technical",
+    "question": {
+      "en": "What is the function of an indicator in a vehicle?",
+      "np": "सवारी साधनमा इन्डिकेटरको काम के हो?"
+    },
+    "options": [
+      { "id": "A", "en": "To stop the vehicle", "np": "सवारी रोक्न" },
+      { "id": "B", "en": "To show the direction of turning", "np": "मोड्ने दिशा देखाउन" },
+      { "id": "C", "en": "To increase speed", "np": "गति बढाउन" },
+      { "id": "D", "en": "To change gears", "np": "गियर फेर्न" }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "4",
+    "category": "Safety",
+    "question": {
+      "en": "Why is it necessary to wear a helmet while riding a motorcycle?",
+      "np": "मोटरसाइकल चलाउँदा हेल्मेट किन लगाउनुपर्छ?"
+    },
+    "options": [
+      { "id": "A", "en": "To look good", "np": "राम्रो देखिन" },
+      { "id": "B", "en": "To protect from sun", "np": "घामबाट बच्न" },
+      { "id": "C", "en": "To protect the head in an accident", "np": "दुर्घटनामा टाउको बचाउन" },
+      { "id": "D", "en": "To avoid police fine", "np": "प्रहरीको जरिवानाबाट बच्न" }
+    ],
+    "correctOptionId": "C",
+    "weightage": "A"
+  },
+  {
+    "id": "5",
+    "category": "Traffic signs",
+    "question": {
+      "en": "What does a triangular traffic sign usually indicate?",
+      "np": "त्रिकोणात्मक ट्राफिक चिन्हले प्रायः के जनाउँछ?"
+    },
+    "options": [
+      { "id": "A", "en": "Warning", "np": "चेतावनी" },
+      { "id": "B", "en": "Information", "np": "जानकारी" },
+      { "id": "C", "en": "Order", "np": "आदेश" },
+      { "id": "D", "en": "Prohibition", "np": "निषेध" }
+    ],
+    "correctOptionId": "A",
+    "weightage": "A"
+  }
+]
