@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, SafeAreaView } from 'react-native';
+import { auth, storage } from '@/lib/firebase';
+import { useAuthStore } from '@/store/authStore';
+import { useExamStore } from '@/store/examStore';
+import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
-import { useAuthStore } from '@/store/authStore';
 import { updateProfile } from 'firebase/auth';
-import { auth, storage } from '@/lib/firebase';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import React, { useState } from 'react';
+import { ActivityIndicator, Alert, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProfileScreen() {
   const { user, updateUser, logout } = useAuthStore();
+  const { history, language, setLanguage } = useExamStore();
+
   const [displayName, setDisplayName] = useState(user?.displayName || '');
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  // Statistics calculations
+  const totalExams = history.length;
+  const passedExams = history.filter(h => h.passed).length;
+  const passRate = totalExams > 0 ? Math.round((passedExams / totalExams) * 100) : 0;
 
   const handlePickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -33,15 +43,10 @@ export default function ProfileScreen() {
 
       // If a new image was selected, upload it
       if (selectedImage && selectedImage !== user?.photoURL) {
-        // Fetch the file from the uri
         const response = await fetch(selectedImage);
         const blob = await response.blob();
-
-        // Create a reference in Firebase Storage
         const imageRef = ref(storage, `profiles/${user?.uid}`);
         await uploadBytes(imageRef, blob);
-
-        // Get the download URL
         photoURL = await getDownloadURL(imageRef);
       }
 
@@ -66,65 +71,135 @@ export default function ProfileScreen() {
     ]);
   };
 
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'np' : 'en');
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-zinc-50 dark:bg-zinc-950">
-      <View className="flex-1 px-6 pt-10">
-        <Text className="text-4xl font-extrabold text-zinc-900 dark:text-zinc-50 mb-10">Profile</Text>
-
-        <View className="items-center mb-10">
-          <TouchableOpacity onPress={handlePickImage} className="relative rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-800 border-4 border-white dark:border-zinc-900 shadow-xl" style={{ elevation: 10 }}>
-            <Image
-              source={{ uri: selectedImage || user?.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y' }}
-              style={{ width: 140, height: 140 }}
-              contentFit="cover"
-            />
-            <View className="absolute bottom-0 w-full bg-black/60 py-2 items-center pb-3">
-              <Text className="text-white text-[10px] font-bold tracking-widest uppercase">Edit</Text>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        className="flex-1"
+      >
+        <ScrollView
+          className="flex-1"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 40 }}
+        >
+          {/* Header Section */}
+          <View className="px-6 pt-8 pb-6 bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
+            <View className="flex-row items-center justify-between mb-8">
+              <Text className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">Profile</Text>
+              <TouchableOpacity onPress={handleLogout} className="p-2 rounded-full bg-red-50 dark:bg-red-950/30">
+                <Ionicons name="log-out-outline" size={24} color="#ef4444" />
+              </TouchableOpacity>
             </View>
-          </TouchableOpacity>
-        </View>
 
-        <View className="space-y-6 mb-10">
-          <View>
-            <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-2 uppercase tracking-wider ml-1">Email</Text>
-            <View className="bg-white dark:bg-zinc-900 rounded-2xl p-4 shadow-sm border border-zinc-100 dark:border-zinc-800/50">
-              <Text className="text-base font-medium text-zinc-500 dark:text-zinc-400">{user?.email}</Text>
+            <View className="items-center">
+              <TouchableOpacity onPress={handlePickImage} className="relative rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-800 border-4 border-white dark:border-zinc-800 shadow-lg" style={{ elevation: 8 }}>
+                <Image
+                  source={{ uri: selectedImage || user?.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y' }}
+                  style={{ width: 120, height: 120 }}
+                  contentFit="cover"
+                />
+                <View className="absolute bottom-0 w-full bg-black/50 py-1.5 items-center">
+                  <Ionicons name="camera" size={16} color="white" />
+                </View>
+              </TouchableOpacity>
+              <Text className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mt-4">{user?.displayName || 'User'}</Text>
+              <Text className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">{user?.email}</Text>
             </View>
           </View>
 
-          <View className="mt-6">
-            <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-2 uppercase tracking-wider ml-1">Display Name</Text>
-            <TextInput
-              value={displayName}
-              onChangeText={setDisplayName}
-              placeholder="Enter your name"
-              placeholderTextColor="#9ca3af"
-              className="text-base font-medium text-zinc-900 dark:text-zinc-100 p-4 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm focus:border-blue-500 dark:focus:border-blue-500"
-            />
+          <View className="px-6 mt-6 space-y-6">
+
+            {/* Statistics Section */}
+            <View>
+              <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-3 uppercase tracking-wider ml-1">Your Progress</Text>
+              <View className="flex-row gap-4">
+                <View className="flex-1 bg-white dark:bg-zinc-900 rounded-2xl p-4 border border-zinc-200 dark:border-zinc-800 shadow-sm items-center">
+                  <View className="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-950/30 items-center justify-center mb-2">
+                    <Ionicons name="document-text" size={20} color="#3b82f6" />
+                  </View>
+                  <Text className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">{totalExams}</Text>
+                  <Text className="text-xs text-zinc-500 dark:text-zinc-400 text-center">Tests Taken</Text>
+                </View>
+
+                <View className="flex-1 bg-white dark:bg-zinc-900 rounded-2xl p-4 border border-zinc-200 dark:border-zinc-800 shadow-sm items-center">
+                  <View className="w-10 h-10 rounded-full bg-green-50 dark:bg-green-950/30 items-center justify-center mb-2">
+                    <Ionicons name="checkmark-circle" size={20} color="#22c55e" />
+                  </View>
+                  <Text className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">{passRate}%</Text>
+                  <Text className="text-xs text-zinc-500 dark:text-zinc-400 text-center">Pass Rate</Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Personal Info Section */}
+            <View>
+              <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-3 uppercase tracking-wider ml-1 mt-6">Personal Details</Text>
+              <View className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
+                <View className="p-4 border-b border-zinc-100 dark:border-zinc-800 flex-row items-center">
+                  <Ionicons name="mail-outline" size={20} color="#6b7280" className="mr-3" />
+                  <View className="ml-3 flex-1">
+                    <Text className="text-xs text-zinc-500 dark:text-zinc-400 mb-0.5">Email</Text>
+                    <Text className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{user?.email}</Text>
+                  </View>
+                </View>
+
+                <View className="p-4 flex-row items-center">
+                  <Ionicons name="person-outline" size={20} color="#6b7280" className="mr-3" />
+                  <View className="ml-3 flex-1">
+                    <Text className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Display Name</Text>
+                    <TextInput
+                      value={displayName}
+                      onChangeText={setDisplayName}
+                      placeholder="Enter your name"
+                      placeholderTextColor="#9ca3af"
+                      className="text-sm font-medium text-zinc-900 dark:text-zinc-100 py-2 border-b border-zinc-200 dark:border-zinc-700 focus:border-blue-500"
+                    />
+                  </View>
+                </View>
+              </View>
+
+              <TouchableOpacity
+                onPress={saveProfile}
+                disabled={loading}
+                className="mt-4 bg-zinc-900 dark:bg-white rounded-xl py-3.5 flex-row justify-center items-center shadow-lg shadow-zinc-900/20"
+              >
+                {loading ? (
+                  <ActivityIndicator color={Platform.OS === 'ios' ? 'white' : 'black'} />
+                ) : (
+                  <Text className="text-white dark:text-zinc-900 font-bold text-sm tracking-wide">Save Changes</Text>
+                )}
+              </TouchableOpacity>
+            </View>
+
+            {/* App Settings Section */}
+            <View>
+              <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-3 uppercase tracking-wider ml-1 mt-6">App Settings</Text>
+              <View className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
+                <TouchableOpacity
+                  onPress={toggleLanguage}
+                  className="p-4 flex-row items-center justify-between"
+                  activeOpacity={0.7}
+                >
+                  <View className="flex-row items-center">
+                    <Ionicons name="language-outline" size={20} color="#6b7280" className="mr-3" />
+                    <Text className="ml-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">Language</Text>
+                  </View>
+                  <View className="bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-full">
+                    <Text className="text-xs font-bold text-zinc-900 dark:text-zinc-100">
+                      {language === 'en' ? 'English' : 'Nepali'}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+
           </View>
-        </View>
-
-        <TouchableOpacity
-          onPress={saveProfile}
-          disabled={loading}
-          className="bg-blue-600 active:bg-blue-700 rounded-2xl py-4 flex-row justify-center items-center shadow-lg shadow-blue-600/30 mb-8"
-        >
-          {loading ? (
-            <ActivityIndicator color="white" />
-          ) : (
-            <Text className="text-white font-bold text-lg tracking-wide">Save Changes</Text>
-          )}
-        </TouchableOpacity>
-
-        <View className="flex-1" />
-
-        <TouchableOpacity
-          onPress={handleLogout}
-          className="bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30 rounded-2xl py-4 flex-row justify-center items-center mb-6 active:bg-red-100 dark:active:bg-red-900/40"
-        >
-          <Text className="text-red-600 dark:text-red-500 font-bold text-base tracking-wide">Log Out</Text>
-        </TouchableOpacity>
-      </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
