@@ -1,0 +1,123 @@
+[
+  {
+    "id": "au-traffic-1",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "What does a red traffic light mean?",
+      "local": "What does a red traffic light mean?"
+    },
+    "options": [
+      { "id": "A", "en": "Stop", "local": "Stop" },
+      { "id": "B", "en": "Go", "local": "Go" },
+      { "id": "C", "en": "Wait", "local": "Wait" },
+      { "id": "D", "en": "Turn left", "local": "Turn left" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "A red light requires you to stop. Only proceed when safe and allowed.",
+      "local": "A red light requires you to stop. Only proceed when safe and allowed."
+    }
+  },
+  {
+    "id": "au-traffic-2",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car"],
+    "question": {
+      "en": "Overtaking should be done only when it is safe and the road ahead is clear.",
+      "local": "Overtaking should be done only when it is safe and the road ahead is clear."
+    },
+    "options": [
+      { "id": "A", "en": "True", "local": "True" },
+      { "id": "B", "en": "False", "local": "False" },
+      { "id": "C", "en": "Only at night", "local": "Only at night" },
+      { "id": "D", "en": "Only in rain", "local": "Only in rain" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Safe overtaking avoids danger to others and requires clear visibility.",
+      "local": "Safe overtaking avoids danger to others and requires clear visibility."
+    }
+  },
+  {
+    "id": "au-signs-1",
+    "categoryId": "road-signs",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "A triangular sign usually indicates a…",
+      "local": "A triangular sign usually indicates a…"
+    },
+    "options": [
+      { "id": "A", "en": "Warning", "local": "Warning" },
+      { "id": "B", "en": "Speed limit", "local": "Speed limit" },
+      { "id": "C", "en": "Parking place", "local": "Parking place" },
+      { "id": "D", "en": "Direction change", "local": "Direction change" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Triangles are commonly used to warn drivers of hazards.",
+      "local": "Triangles are commonly used to warn drivers of hazards."
+    }
+  },
+  {
+    "id": "au-safety-1",
+    "categoryId": "safety",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "Why should you wear a seatbelt?",
+      "local": "Why should you wear a seatbelt?"
+    },
+    "options": [
+      { "id": "A", "en": "To reduce injury in crashes", "local": "To reduce injury in crashes" },
+      { "id": "B", "en": "For comfort only", "local": "For comfort only" },
+      { "id": "C", "en": "To increase speed", "local": "To increase speed" },
+      { "id": "D", "en": "Only when it’s raining", "local": "Only when it’s raining" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Seatbelts keep you protected and reduce the risk of severe injury.",
+      "local": "Seatbelts keep you protected and reduce the risk of severe injury."
+    }
+  },
+  {
+    "id": "au-handling-1",
+    "categoryId": "vehicle-handling",
+    "licenseTypes": ["Bike", "Car"],
+    "question": {
+      "en": "Before changing lanes, you should check your mirrors and blind spot.",
+      "local": "Before changing lanes, you should check your mirrors and blind spot."
+    },
+    "options": [
+      { "id": "A", "en": "True", "local": "True" },
+      { "id": "B", "en": "False", "local": "False" },
+      { "id": "C", "en": "Only at low speeds", "local": "Only at low speeds" },
+      { "id": "D", "en": "Only on weekends", "local": "Only on weekends" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "This helps ensure the lane is clear and prevents collisions.",
+      "local": "This helps ensure the lane is clear and prevents collisions."
+    }
+  },
+  {
+    "id": "au-signs-2",
+    "categoryId": "road-signs",
+    "licenseTypes": ["Bike", "Car"],
+    "question": {
+      "en": "A red circle with a line typically means…",
+      "local": "A red circle with a line typically means…"
+    },
+    "options": [
+      { "id": "A", "en": "Prohibition/restriction", "local": "Prohibition/restriction" },
+      { "id": "B", "en": "Permission", "local": "Permission" },
+      { "id": "C", "en": "No meaning", "local": "No meaning" },
+      { "id": "D", "en": "Parking allowed", "local": "Parking allowed" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Red circles with a line commonly indicate prohibited actions.",
+      "local": "Red circles with a line commonly indicate prohibited actions."
+    }
+  }
+]
+

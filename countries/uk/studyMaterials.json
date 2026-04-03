@@ -1,0 +1,49 @@
+[
+  {
+    "id": "uk-traffic-1",
+    "categoryId": "traffic-rules",
+    "title": { "en": "Stop at red signals", "local": "Stop at red signals" },
+    "body": {
+      "en": "Red means stop. Give way at crossings and follow priority rules.",
+      "local": "Red means stop. Give way at crossings and follow priority rules."
+    },
+    "keyRules": [
+      { "en": "Indicators before changing direction", "local": "Indicators before changing direction" }
+    ]
+  },
+  {
+    "id": "uk-signs-1",
+    "categoryId": "road-signs",
+    "title": { "en": "Know common shapes", "local": "Know common shapes" },
+    "body": {
+      "en": "Triangles typically warn; circles may indicate mandatory or prohibited actions.",
+      "local": "Triangles typically warn; circles may indicate mandatory or prohibited actions."
+    },
+    "image": {
+      "url": "https://dummyimage.com/600x300/2563eb/ffffff.png&text=Road+Sign",
+      "caption": { "en": "Example road sign (placeholder)", "local": "Example road sign (placeholder)" }
+    }
+  },
+  {
+    "id": "uk-safety-1",
+    "categoryId": "safety",
+    "title": { "en": "Seatbelt and helmet", "local": "Seatbelt and helmet" },
+    "body": {
+      "en": "Seatbelts reduce injury. Wear helmets on two-wheelers.",
+      "local": "Seatbelts reduce injury. Wear helmets on two-wheelers."
+    },
+    "keyRules": [
+      { "en": "Always secure properly", "local": "Always secure properly" }
+    ]
+  },
+  {
+    "id": "uk-handling-1",
+    "categoryId": "vehicle-handling",
+    "title": { "en": "Safe lane changing", "local": "Safe lane changing" },
+    "body": {
+      "en": "Check mirrors, signal early, and ensure the blind spot is clear.",
+      "local": "Check mirrors, signal early, and ensure the blind spot is clear."
+    }
+  }
+]
+

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { FontAwesome } from '@expo/vector-icons';
-import { Alert } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 
@@ -23,8 +22,37 @@ export default function LoginScreen() {
     }
   };
 
-  const handleGoogleLogin = () => {
-    Alert.alert('Google Auth', 'Google Auth logic belongs here once setup is complete in Firebase Console.');
+  const handleGoogleLogin = async () => {
+    try {
+      if (Platform.OS === 'web') {
+        const { GoogleAuthProvider, signInWithPopup } = await import('firebase/auth');
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth, provider);
+        router.replace('/(tabs)');
+        return;
+      }
+
+      const { GoogleSignin } = await import('@react-native-google-signin/google-signin');
+      const { GoogleAuthProvider, signInWithCredential } = await import('firebase/auth');
+
+      GoogleSignin.configure({
+        webClientId: '166678973840-iel6cu03ngph75ojiqv1mu34ao4dhlec.apps.googleusercontent.com',
+      });
+
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      // Handle both v10 and v11+ of the google-signin library
+      const idToken = (userInfo as any).data?.idToken || (userInfo as any).idToken;
+
+      if (!idToken) throw new Error('No ID token found');
+      
+      const credential = GoogleAuthProvider.credential(idToken);
+      await signInWithCredential(auth, credential);
+      router.replace('/(tabs)');
+    } catch (error: any) {
+      console.log('Google login error: ', error);
+      Alert.alert('Google Login Failed', error.message);
+    }
   };
 
   return (
@@ -110,7 +138,7 @@ export default function LoginScreen() {
 
           {/* Footer */}
           <View className="flex-row justify-center pb-8">
-            <Text className="text-gray-500 dark:text-gray-400">Don't have an account? </Text>
+            <Text className="text-gray-500 dark:text-gray-400">Do not have an account? </Text>
             <TouchableOpacity onPress={() => router.push('/(auth)/register')}>
               <Text className="text-blue-600 dark:text-blue-400 font-bold">Register</Text>
             </TouchableOpacity>

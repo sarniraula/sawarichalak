@@ -1,0 +1,143 @@
+[
+  {
+    "id": "ca-traffic-1",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "What does a red light mean?",
+      "local": "Que signifie un feu rouge ?"
+    },
+    "options": [
+      { "id": "A", "en": "Stop", "local": "Arrêt" },
+      { "id": "B", "en": "Go", "local": "Avancer" },
+      { "id": "C", "en": "Wait", "local": "Attendre" },
+      { "id": "D", "en": "Turn left only", "local": "Tourner à gauche seulement" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "A red light means you must stop. Proceed only when it’s safe and allowed.",
+      "local": "Un feu rouge signifie que vous devez vous arrêter. Avancez seulement lorsque c’est sûr et autorisé."
+    }
+  },
+  {
+    "id": "ca-traffic-2",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car"],
+    "question": {
+      "en": "Before overtaking, you should ensure the road ahead is clear and you can do it safely.",
+      "local": "Avant de doubler, assurez-vous que la route est dégagée et que vous pouvez le faire en sécurité."
+    },
+    "options": [
+      { "id": "A", "en": "True", "local": "Vrai" },
+      { "id": "B", "en": "False", "local": "Faux" },
+      { "id": "C", "en": "Only at night", "local": "Seulement la nuit" },
+      { "id": "D", "en": "Only on highways", "local": "Seulement sur les autoroutes" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Safe overtaking requires a clear road and no danger to others.",
+      "local": "Un dépassement en sécurité nécessite une route dégagée et aucun danger pour les autres."
+    }
+  },
+  {
+    "id": "ca-signs-1",
+    "categoryId": "road-signs",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "A triangular sign usually indicates…",
+      "local": "Un panneau triangulaire indique généralement…"
+    },
+    "options": [
+      { "id": "A", "en": "Warning", "local": "Avertissement" },
+      { "id": "B", "en": "Information", "local": "Information" },
+      { "id": "C", "en": "Mandatory only", "local": "Obligatoire seulement" },
+      { "id": "D", "en": "Parking", "local": "Stationnement" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Triangles are typically used for warning signs.",
+      "local": "Les triangles sont généralement utilisés pour les panneaux d’avertissement."
+    }
+  },
+  {
+    "id": "ca-signs-2",
+    "categoryId": "road-signs",
+    "licenseTypes": ["Bike", "Car"],
+    "question": {
+      "en": "A red-bordered circular sign usually means…",
+      "local": "Un panneau circulaire à bord rouge signifie généralement…"
+    },
+    "options": [
+      { "id": "A", "en": "Warning", "local": "Avertissement" },
+      { "id": "B", "en": "Mandatory action", "local": "Action obligatoire" },
+      { "id": "C", "en": "Prohibition/restriction", "local": "Interdiction/Restriction" },
+      { "id": "D", "en": "Permission", "local": "Autorisation" }
+    ],
+    "correctOptionId": "C",
+    "explanation": {
+      "en": "A red-bordered circle typically indicates prohibition or restriction.",
+      "local": "Un cercle à bord rouge indique généralement une interdiction ou une restriction."
+    }
+  },
+  {
+    "id": "ca-safety-1",
+    "categoryId": "safety",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "Why are seatbelts important?",
+      "local": "Pourquoi les ceintures sont importantes ?"
+    },
+    "options": [
+      { "id": "A", "en": "Decoration", "local": "Décoration" },
+      { "id": "B", "en": "Safety during accidents", "local": "Sécurité en cas d’accident" },
+      { "id": "C", "en": "To drive faster", "local": "Pour aller plus vite" },
+      { "id": "D", "en": "Only required at night", "local": "Seulement la nuit" }
+    ],
+    "correctOptionId": "B",
+    "explanation": {
+      "en": "Seatbelts help keep occupants protected and reduce injury in crashes.",
+      "local": "Les ceintures protègent les occupants et réduisent les blessures en cas de crash."
+    }
+  },
+  {
+    "id": "ca-handling-1",
+    "categoryId": "vehicle-handling",
+    "licenseTypes": ["Bike", "Car"],
+    "question": {
+      "en": "Before changing lanes, you must check mirrors, signal, and the blind spot.",
+      "local": "Avant de changer de voie, vous devez vérifier les rétroviseurs, signaler et l’angle mort."
+    },
+    "options": [
+      { "id": "A", "en": "Look ahead only", "local": "Regarder seulement devant" },
+      { "id": "B", "en": "Check mirrors, signal, and blind spot", "local": "Vérifier les rétroviseurs, signaler et l’angle mort" },
+      { "id": "C", "en": "Close your eyes", "local": "Fermer les yeux" },
+      { "id": "D", "en": "Speed up immediately", "local": "Accélérer immédiatement" }
+    ],
+    "correctOptionId": "B",
+    "explanation": {
+      "en": "This helps ensure the lane is clear and warns other road users.",
+      "local": "Cela garantit que la voie est libre et avertit les autres usagers."
+    }
+  },
+  {
+    "id": "ca-vehicle-1",
+    "categoryId": "vehicle-handling",
+    "licenseTypes": ["Heavy Vehicle"],
+    "question": {
+      "en": "Heavy vehicles require longer stopping distance than lighter vehicles.",
+      "local": "Les véhicules lourds ont besoin d’une distance d’arrêt plus longue."
+    },
+    "options": [
+      { "id": "A", "en": "True", "local": "Vrai" },
+      { "id": "B", "en": "False", "local": "Faux" },
+      { "id": "C", "en": "Only in dry weather", "local": "Seulement par temps sec" },
+      { "id": "D", "en": "Only at low speed", "local": "Seulement à basse vitesse" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Mass and braking performance affect stopping distance.",
+      "local": "La masse et le freinage affectent la distance d’arrêt."
+    }
+  }
+]
+

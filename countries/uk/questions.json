@@ -1,0 +1,183 @@
+[
+  {
+    "id": "uk-traffic-1",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "What does a red traffic light mean?",
+      "local": "What does a red traffic light mean?"
+    },
+    "options": [
+      { "id": "A", "en": "Stop", "local": "Stop" },
+      { "id": "B", "en": "Go", "local": "Go" },
+      { "id": "C", "en": "Wait", "local": "Wait" },
+      { "id": "D", "en": "Turn left", "local": "Turn left" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "A red light means you must stop. Only proceed when it’s safe and allowed.",
+      "local": "A red light means you must stop. Only proceed when it’s safe and allowed."
+    }
+  },
+  {
+    "id": "uk-traffic-2",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car"],
+    "question": {
+      "en": "When overtaking, what must you ensure?",
+      "local": "When overtaking, what must you ensure?"
+    },
+    "options": [
+      { "id": "A", "en": "You can do it safely without causing danger", "local": "You can do it safely without causing danger" },
+      { "id": "B", "en": "The road is always busy", "local": "The road is always busy" },
+      { "id": "C", "en": "You don’t need mirrors", "local": "You don’t need mirrors" },
+      { "id": "D", "en": "Any time is fine", "local": "Any time is fine" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Overtaking must be safe and not endanger others.",
+      "local": "Overtaking must be safe and not endanger others."
+    }
+  },
+  {
+    "id": "uk-traffic-3",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "You should use your mirrors and signal before changing lanes.",
+      "local": "You should use your mirrors and signal before changing lanes."
+    },
+    "options": [
+      { "id": "A", "en": "True", "local": "True" },
+      { "id": "B", "en": "False", "local": "False" },
+      { "id": "C", "en": "Only at night", "local": "Only at night" },
+      { "id": "D", "en": "Only on motorways", "local": "Only on motorways" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Mirrors + signals warn other road users and reduce collisions.",
+      "local": "Mirrors + signals warn other road users and reduce collisions."
+    }
+  },
+  {
+    "id": "uk-signs-1",
+    "categoryId": "road-signs",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "A triangular sign usually indicates…",
+      "local": "A triangular sign usually indicates…"
+    },
+    "options": [
+      { "id": "A", "en": "Warning", "local": "Warning" },
+      { "id": "B", "en": "Information", "local": "Information" },
+      { "id": "C", "en": "Mandatory only", "local": "Mandatory only" },
+      { "id": "D", "en": "Parking", "local": "Parking" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Triangles are commonly used for warning signs.",
+      "local": "Triangles are commonly used for warning signs."
+    }
+  },
+  {
+    "id": "uk-signs-2",
+    "categoryId": "road-signs",
+    "licenseTypes": ["Bike", "Car"],
+    "question": {
+      "en": "A red circle with a line often means…",
+      "local": "A red circle with a line often means…"
+    },
+    "options": [
+      { "id": "A", "en": "Prohibition/restriction", "local": "Prohibition/restriction" },
+      { "id": "B", "en": "Permission", "local": "Permission" },
+      { "id": "C", "en": "No impact", "local": "No impact" },
+      { "id": "D", "en": "Parking allowed", "local": "Parking allowed" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Red circles with a line typically indicate prohibition.",
+      "local": "Red circles with a line typically indicate prohibition."
+    }
+  },
+  {
+    "id": "uk-signs-3",
+    "categoryId": "road-signs",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "At pedestrian crossings, you should…",
+      "local": "At pedestrian crossings, you should…"
+    },
+    "options": [
+      { "id": "A", "en": "Speed up", "local": "Speed up" },
+      { "id": "B", "en": "Slow down and give way", "local": "Slow down and give way" },
+      { "id": "C", "en": "Ignore pedestrians", "local": "Ignore pedestrians" },
+      { "id": "D", "en": "Honk continuously", "local": "Honk continuously" }
+    ],
+    "correctOptionId": "B",
+    "explanation": {
+      "en": "Pedestrian crossings require you to slow down and give way.",
+      "local": "Pedestrian crossings require you to slow down and give way."
+    }
+  },
+  {
+    "id": "uk-safety-1",
+    "categoryId": "safety",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": {
+      "en": "Why do seatbelts matter?",
+      "local": "Why do seatbelts matter?"
+    },
+    "options": [
+      { "id": "A", "en": "Decoration", "local": "Decoration" },
+      { "id": "B", "en": "Safety during accidents", "local": "Safety during accidents" },
+      { "id": "C", "en": "Helps you drive faster", "local": "Helps you drive faster" },
+      { "id": "D", "en": "Only required at night", "local": "Only required at night" }
+    ],
+    "correctOptionId": "B",
+    "explanation": {
+      "en": "Seatbelts reduce injury by keeping occupants protected in crashes.",
+      "local": "Seatbelts reduce injury by keeping occupants protected in crashes."
+    }
+  },
+  {
+    "id": "uk-handling-1",
+    "categoryId": "vehicle-handling",
+    "licenseTypes": ["Bike", "Car"],
+    "question": {
+      "en": "Before braking, you should look ahead and plan your stopping distance.",
+      "local": "Before braking, you should look ahead and plan your stopping distance."
+    },
+    "options": [
+      { "id": "A", "en": "Look ahead and plan", "local": "Look ahead and plan" },
+      { "id": "B", "en": "Brake suddenly without warning", "local": "Brake suddenly without warning" },
+      { "id": "C", "en": "Stop in the lane without checking", "local": "Stop in the lane without checking" },
+      { "id": "D", "en": "Speed up first", "local": "Speed up first" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Planning helps you brake smoothly and avoid collisions.",
+      "local": "Planning helps you brake smoothly and avoid collisions."
+    }
+  },
+  {
+    "id": "uk-handling-2",
+    "categoryId": "vehicle-handling",
+    "licenseTypes": ["Heavy Vehicle"],
+    "question": {
+      "en": "Heavy vehicles need more stopping distance. True or false?",
+      "local": "Heavy vehicles need more stopping distance. True or false?"
+    },
+    "options": [
+      { "id": "A", "en": "True", "local": "True" },
+      { "id": "B", "en": "False", "local": "False" },
+      { "id": "C", "en": "Only in dry weather", "local": "Only in dry weather" },
+      { "id": "D", "en": "Only at low speed", "local": "Only at low speed" }
+    ],
+    "correctOptionId": "A",
+    "explanation": {
+      "en": "Mass and weight affect braking. Allow extra distance for safe stops.",
+      "local": "Mass and weight affect braking. Allow extra distance for safe stops."
+    }
+  }
+]
+

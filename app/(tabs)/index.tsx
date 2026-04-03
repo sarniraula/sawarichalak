@@ -3,10 +3,15 @@ import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useExamStore } from '@/store/examStore';
+import { useProfileStore } from '@/store/profileStore';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { language, setLanguage, history } = useExamStore();
+  const { profile } = useProfileStore();
+  const { lang, setLanguage, history } = useExamStore();
+
+  // Temporary alias to keep existing UI conditions working.
+  const language = lang;
 
   const totalTests = history.length;
   const passedTests = history.filter(h => h.passed).length;
@@ -18,18 +23,22 @@ export default function HomeScreen() {
         <View className="flex-row justify-between items-center mb-8">
           <View>
             <Text className="text-3xl font-bold text-gray-900 dark:text-white">
-              {language === 'en' ? 'Dashboard' : 'ड्यासबोर्ड'}
+              {lang === 'en' ? 'Dashboard' : 'ड्यासबोर्ड'}
             </Text>
             <Text className="text-gray-500 dark:text-gray-400 mt-1">
-              {language === 'en' ? 'Nepal Driving License Exam' : 'नेपाल ड्राइभिङ लाइसेन्स परीक्षा'}
+              {profile
+                ? `${profile.country[0].toUpperCase()}${profile.country.slice(1)} • ${profile.licenseType}`
+                : lang === 'en'
+                  ? 'Loading profile...'
+                  : 'प्रोफाइल लोड हुँदैछ...'}
             </Text>
           </View>
           <TouchableOpacity 
-            onPress={() => setLanguage(language === 'en' ? 'np' : 'en')}
+            onPress={() => setLanguage(lang === 'en' ? 'local' : 'en')}
             className="bg-blue-100 dark:bg-blue-900 px-3 py-1.5 rounded-full"
           >
             <Text className="text-blue-700 dark:text-blue-300 font-semibold uppercase">
-              {language}
+              {lang === 'en' ? 'EN' : 'LOCAL'}
             </Text>
           </TouchableOpacity>
         </View>
@@ -37,19 +46,19 @@ export default function HomeScreen() {
         {/* Stats Card */}
         <View className="bg-white dark:bg-zinc-800 p-6 rounded-3xl shadow-sm mb-8">
           <Text className="text-gray-500 dark:text-gray-400 font-medium mb-4">
-            {language === 'en' ? 'Your Progress' : 'तपाईंको प्रगति'}
+            {lang === 'en' ? 'Your Progress' : 'तपाईंको प्रगति'}
           </Text>
           <View className="flex-row justify-between">
             <View>
               <Text className="text-3xl font-bold text-gray-900 dark:text-white">{totalTests}</Text>
               <Text className="text-gray-500 dark:text-gray-400">
-                {language === 'en' ? 'Tests Taken' : 'दिएको परीक्षा'}
+                {lang === 'en' ? 'Mock Attempts' : 'नमुना प्रयास'}
               </Text>
             </View>
             <View>
               <Text className="text-3xl font-bold text-green-600 dark:text-green-400">{passedTests}</Text>
               <Text className="text-gray-500 dark:text-gray-400">
-                {language === 'en' ? 'Tests Passed' : 'उत्तीर्ण परीक्षा'}
+                {lang === 'en' ? 'Passed' : 'उत्तीर्ण परीक्षा'}
               </Text>
             </View>
           </View>

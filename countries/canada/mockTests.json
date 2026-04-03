@@ -1,0 +1,84 @@
+[
+  {
+    "id": "ca-on-mock-bike",
+    "licenseType": "Bike",
+    "mode": "mock",
+    "regionKey": "ON",
+    "questionCount": 50,
+    "timeSeconds": 3000,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "ca-on-mock-car",
+    "licenseType": "Car",
+    "mode": "mock",
+    "regionKey": "ON",
+    "questionCount": 50,
+    "timeSeconds": 3000,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "ca-on-mock-heavy",
+    "licenseType": "Heavy Vehicle",
+    "mode": "mock",
+    "regionKey": "ON",
+    "questionCount": 45,
+    "timeSeconds": 3000,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "ca-bc-mock-bike",
+    "licenseType": "Bike",
+    "mode": "mock",
+    "regionKey": "BC",
+    "questionCount": 45,
+    "timeSeconds": 2700,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "ca-bc-mock-car",
+    "licenseType": "Car",
+    "mode": "mock",
+    "regionKey": "BC",
+    "questionCount": 45,
+    "timeSeconds": 2700,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "ca-bc-mock-heavy",
+    "licenseType": "Heavy Vehicle",
+    "mode": "mock",
+    "regionKey": "BC",
+    "questionCount": 40,
+    "timeSeconds": 2700,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "ca-qc-mock-bike",
+    "licenseType": "Bike",
+    "mode": "mock",
+    "regionKey": "QC",
+    "questionCount": 40,
+    "timeSeconds": 2400,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "ca-qc-mock-car",
+    "licenseType": "Car",
+    "mode": "mock",
+    "regionKey": "QC",
+    "questionCount": 40,
+    "timeSeconds": 2400,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "ca-qc-mock-heavy",
+    "licenseType": "Heavy Vehicle",
+    "mode": "mock",
+    "regionKey": "QC",
+    "questionCount": 35,
+    "timeSeconds": 2400,
+    "passMarkPercent": 50
+  }
+]
+

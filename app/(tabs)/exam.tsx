@@ -1,20 +1,68 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { FontAwesome } from '@expo/vector-icons';
 import { useExamStore } from '@/store/examStore';
+import { useProfileStore } from '@/store/profileStore';
+import { useRegionStore } from '@/store/regionStore';
+import { getMockTestConfig } from '@/services/countryContent';
+import type { MockTestConfig } from '@/types/content';
 
 export default function ExamScreen() {
   const router = useRouter();
-  const { language, setLanguage, startTest, activeTest } = useExamStore();
+  const { profile, initialized, loadProfile } = useProfileStore();
+  const { canadaRegionKey } = useRegionStore();
+  const { lang, setLanguage, startTest, activeTest } = useExamStore();
+
+  // Keep existing text-logic readable.
+  const language = lang;
+
+  const [mockConfig, setMockConfig] = useState<MockTestConfig | null>(null);
+  const [configError, setConfigError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!profile) {
+      loadProfile().catch(() => {});
+    }
+  }, [profile, loadProfile]);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function run() {
+      if (!profile) return;
+      setConfigError(null);
+      try {
+        const cfg = await getMockTestConfig({
+          country: profile.country,
+          licenseType: profile.licenseType,
+          regionKey: profile.country === 'canada' ? canadaRegionKey : undefined,
+        });
+        if (cancelled) return;
+        setMockConfig(cfg);
+      } catch (e: any) {
+        if (cancelled) return;
+        setMockConfig(null);
+        setConfigError(e?.message ?? 'Failed to load exam config');
+      }
+    }
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [profile, canadaRegionKey]);
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'np' : 'en');
+    setLanguage(language === 'en' ? 'local' : 'en');
   };
 
-  const handleStartTest = () => {
-    startTest();
+  const handleStartTest = async () => {
+    if (!profile) return;
+    await startTest({
+      country: profile.country,
+      licenseType: profile.licenseType,
+      regionKey: profile.country === 'canada' ? canadaRegionKey : undefined,
+    });
     router.push('/(exam)/test');
   };
 
@@ -52,27 +100,61 @@ export default function ExamScreen() {
           </Text>
 
           <View className="space-y-4 mb-8">
-            <View className="flex-row items-center">
-              <View className="w-6 items-center"><FontAwesome name="list-ol" size={16} color="#9ca3af" /></View>
-              <Text className="text-zinc-700 dark:text-zinc-300 font-medium ml-3">
-                {language === 'en' ? '20 Questions' : '२० प्रश्नहरू'}
-              </Text>
-            </View>
-            <View className="flex-row items-center">
-              <View className="w-6 items-center"><FontAwesome name="clock-o" size={16} color="#9ca3af" /></View>
-              <Text className="text-zinc-700 dark:text-zinc-300 font-medium ml-3">
-                {language === 'en' ? '30 Minutes' : '३० मिनेट'}
-              </Text>
-            </View>
-            <View className="flex-row items-center">
-              <View className="w-6 items-center"><FontAwesome name="check-circle" size={16} color="#9ca3af" /></View>
-              <Text className="text-zinc-700 dark:text-zinc-300 font-medium ml-3">
-                {language === 'en' ? 'Pass Mark: 10/20' : 'उत्तीर्ण अंक: १०/२०'}
-              </Text>
-            </View>
+            {!profile ? (
+              <View className="items-center">
+                <ActivityIndicator />
+                <Text className="text-zinc-500 dark:text-zinc-400 mt-2">
+                  {initialized ? 'Profile is unavailable.' : (language === 'en' ? 'Loading profile...' : 'प्रोफाइल लोड हुँदैछ...')}
+                </Text>
+              </View>
+            ) : configError ? (
+              <View className="items-center">
+                <Text className="text-red-500 dark:text-red-400 mt-2 text-center">{configError}</Text>
+              </View>
+            ) : !mockConfig ? (
+              <View className="items-center">
+                <ActivityIndicator />
+                <Text className="text-zinc-500 dark:text-zinc-400 mt-2">{language === 'en' ? 'Loading config...' : 'कन्फिग लोड हुँदैछ...'}</Text>
+              </View>
+            ) : (
+              <>
+                <View className="flex-row items-center">
+                  <View className="w-6 items-center"><FontAwesome name="list-ol" size={16} color="#9ca3af" /></View>
+                  <Text className="text-zinc-700 dark:text-zinc-300 font-medium ml-3">
+                    {language === 'en' ? `${mockConfig.questionCount} Questions` : `${mockConfig.questionCount} प्रश्नहरू`}
+                  </Text>
+                </View>
+                <View className="flex-row items-center">
+                  <View className="w-6 items-center"><FontAwesome name="clock-o" size={16} color="#9ca3af" /></View>
+                  <Text className="text-zinc-700 dark:text-zinc-300 font-medium ml-3">
+                    {language === 'en' ? `${Math.round(mockConfig.timeSeconds / 60)} Minutes` : `${Math.round(mockConfig.timeSeconds / 60)} मिनेट`}
+                  </Text>
+                </View>
+                <View className="flex-row items-center">
+                  <View className="w-6 items-center"><FontAwesome name="check-circle" size={16} color="#9ca3af" /></View>
+                  <Text className="text-zinc-700 dark:text-zinc-300 font-medium ml-3">
+                    {(() => {
+                      const q = mockConfig.questionCount;
+                      const passPercent = mockConfig.passMarkPercent ?? 50;
+                      const passCount = Math.ceil((passPercent / 100) * q);
+                      return language === 'en' ? `Pass Mark: ${passCount}/${q}` : `उत्तीर्ण अंक: ${passCount}/${q}`;
+                    })()}
+                  </Text>
+                </View>
+              </>
+            )}
           </View>
 
-          {activeTest && !activeTest.isFinished ? (
+          {!profile ? (
+            <TouchableOpacity
+              onPress={() => loadProfile().catch(() => {})}
+              className="w-full bg-zinc-400 py-4 rounded-xl items-center"
+            >
+              <Text className="text-white text-lg font-bold tracking-wide">
+                {language === 'en' ? 'Retry' : 'पुन: प्रयास'}
+              </Text>
+            </TouchableOpacity>
+          ) : activeTest && !activeTest.isFinished ? (
             <TouchableOpacity 
               onPress={handleResumeTest}
               className="w-full bg-blue-600 active:bg-blue-700 py-4 rounded-xl items-center shadow-lg shadow-blue-600/30"

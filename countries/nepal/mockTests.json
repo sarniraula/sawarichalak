@@ -1,0 +1,27 @@
+[
+  {
+    "id": "nepal-mock-bike",
+    "licenseType": "Bike",
+    "mode": "mock",
+    "questionCount": 20,
+    "timeSeconds": 1800,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "nepal-mock-car",
+    "licenseType": "Car",
+    "mode": "mock",
+    "questionCount": 20,
+    "timeSeconds": 1800,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "nepal-mock-heavy",
+    "licenseType": "Heavy Vehicle",
+    "mode": "mock",
+    "questionCount": 20,
+    "timeSeconds": 1800,
+    "passMarkPercent": 50
+  }
+]
+

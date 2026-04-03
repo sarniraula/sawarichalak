@@ -7,10 +7,26 @@
       "np": "रातो ट्राफिक बत्तीले के संकेत गर्छ?"
     },
     "options": [
-      { "id": "A", "en": "Stop", "np": "रोक्नुहोस्" },
-      { "id": "B", "en": "Go", "np": "जानुहोस्" },
-      { "id": "C", "en": "Wait", "np": "पर्खनुहोस्" },
-      { "id": "D", "en": "Turn left", "np": "बायाँ मोड्नुहोस्" }
+      {
+        "id": "A",
+        "en": "Stop",
+        "np": "रोक्नुहोस्"
+      },
+      {
+        "id": "B",
+        "en": "Go",
+        "np": "जानुहोस्"
+      },
+      {
+        "id": "C",
+        "en": "Wait",
+        "np": "पर्खनुहोस्"
+      },
+      {
+        "id": "D",
+        "en": "Turn left",
+        "np": "बायाँ मोड्नुहोस्"
+      }
     ],
     "correctOptionId": "A",
     "weightage": "A"
@@ -23,10 +39,26 @@
       "np": "तपाईंले कुन अवस्थामा अर्को सवारी साधनलाई उछिन्ने गर्नुपर्छ?"
     },
     "options": [
-      { "id": "A", "en": "On a curve", "np": "घुम्तीमा" },
-      { "id": "B", "en": "When the road ahead is clear", "np": "अगाडिको बाटो सफा हुँदा" },
-      { "id": "C", "en": "At an intersection", "np": "चौबाटोमा" },
-      { "id": "D", "en": "Anytime", "np": "जुनसुकै बेला" }
+      {
+        "id": "A",
+        "en": "On a curve",
+        "np": "घुम्तीमा"
+      },
+      {
+        "id": "B",
+        "en": "When the road ahead is clear",
+        "np": "अगाडिको बाटो सफा हुँदा"
+      },
+      {
+        "id": "C",
+        "en": "At an intersection",
+        "np": "चौबाटोमा"
+      },
+      {
+        "id": "D",
+        "en": "Anytime",
+        "np": "जुनसुकै बेला"
+      }
     ],
     "correctOptionId": "B",
     "weightage": "A"
@@ -39,10 +71,26 @@
       "np": "सवारी साधनमा इन्डिकेटरको काम के हो?"
     },
     "options": [
-      { "id": "A", "en": "To stop the vehicle", "np": "सवारी रोक्न" },
-      { "id": "B", "en": "To show the direction of turning", "np": "मोड्ने दिशा देखाउन" },
-      { "id": "C", "en": "To increase speed", "np": "गति बढाउन" },
-      { "id": "D", "en": "To change gears", "np": "गियर फेर्न" }
+      {
+        "id": "A",
+        "en": "To stop the vehicle",
+        "np": "सवारी रोक्न"
+      },
+      {
+        "id": "B",
+        "en": "To show the direction of turning",
+        "np": "मोड्ने दिशा देखाउन"
+      },
+      {
+        "id": "C",
+        "en": "To increase speed",
+        "np": "गति बढाउन"
+      },
+      {
+        "id": "D",
+        "en": "To change gears",
+        "np": "गियर फेर्न"
+      }
     ],
     "correctOptionId": "B",
     "weightage": "A"
@@ -55,10 +103,26 @@
       "np": "मोटरसाइकल चलाउँदा हेल्मेट किन लगाउनुपर्छ?"
     },
     "options": [
-      { "id": "A", "en": "To look good", "np": "राम्रो देखिन" },
-      { "id": "B", "en": "To protect from sun", "np": "घामबाट बच्न" },
-      { "id": "C", "en": "To protect the head in an accident", "np": "दुर्घटनामा टाउको बचाउन" },
-      { "id": "D", "en": "To avoid police fine", "np": "प्रहरीको जरिवानाबाट बच्न" }
+      {
+        "id": "A",
+        "en": "To look good",
+        "np": "राम्रो देखिन"
+      },
+      {
+        "id": "B",
+        "en": "To protect from sun",
+        "np": "घामबाट बच्न"
+      },
+      {
+        "id": "C",
+        "en": "To protect the head in an accident",
+        "np": "दुर्घटनामा टाउको बचाउन"
+      },
+      {
+        "id": "D",
+        "en": "To avoid police fine",
+        "np": "प्रहरीको जरिवानाबाट बच्न"
+      }
     ],
     "correctOptionId": "C",
     "weightage": "A"
@@ -71,12 +135,604 @@
       "np": "त्रिकोणात्मक ट्राफिक चिन्हले प्रायः के जनाउँछ?"
     },
     "options": [
-      { "id": "A", "en": "Warning", "np": "चेतावनी" },
-      { "id": "B", "en": "Information", "np": "जानकारी" },
-      { "id": "C", "en": "Order", "np": "आदेश" },
-      { "id": "D", "en": "Prohibition", "np": "निषेध" }
+      {
+        "id": "A",
+        "en": "Warning",
+        "np": "चेतावनी"
+      },
+      {
+        "id": "B",
+        "en": "Information",
+        "np": "जानकारी"
+      },
+      {
+        "id": "C",
+        "en": "Order",
+        "np": "आदेश"
+      },
+      {
+        "id": "D",
+        "en": "Prohibition",
+        "np": "निषेध"
+      }
     ],
     "correctOptionId": "A",
+    "weightage": "A"
+  },
+  {
+    "id": "6",
+    "category": "Traffic Rules",
+    "question": {
+      "en": "What should you do at a zebra crossing?",
+      "np": "जिब्रा क्रसिङमा के गर्नुपर्छ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Speed up",
+        "np": "गति बढाउनुहोस्"
+      },
+      {
+        "id": "B",
+        "en": "Stop for pedestrians",
+        "np": "पैदल यात्रीलाई रोकिनुहोस्"
+      },
+      {
+        "id": "C",
+        "en": "Ignore",
+        "np": "वास्ता नगर्नुहोस्"
+      },
+      {
+        "id": "D",
+        "en": "Honk continuously",
+        "np": "लगातार हर्न बजाउनुहोस्"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "7",
+    "category": "Traffic Rules",
+    "question": {
+      "en": "What does a green traffic light mean?",
+      "np": "हरियो बत्तीले के जनाउँछ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Stop",
+        "np": "रोक्नुहोस्"
+      },
+      {
+        "id": "B",
+        "en": "Go",
+        "np": "जानुहोस्"
+      },
+      {
+        "id": "C",
+        "en": "Wait",
+        "np": "पर्खनुहोस्"
+      },
+      {
+        "id": "D",
+        "en": "Slow down",
+        "np": "गति घटाउनुहोस्"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "8",
+    "category": "Traffic Rules",
+    "question": {
+      "en": "When is the use of horn prohibited?",
+      "np": "हर्न कहिले बजाउन निषेध छ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Near hospital",
+        "np": "अस्पताल नजिक"
+      },
+      {
+        "id": "B",
+        "en": "On highway",
+        "np": "हाइवेमा"
+      },
+      {
+        "id": "C",
+        "en": "In traffic",
+        "np": "ट्राफिकमा"
+      },
+      {
+        "id": "D",
+        "en": "At night",
+        "np": "राति"
+      }
+    ],
+    "correctOptionId": "A",
+    "weightage": "A"
+  },
+  {
+    "id": "9",
+    "category": "Safety",
+    "question": {
+      "en": "What is the safe distance between two vehicles?",
+      "np": "दुई सवारीबीच सुरक्षित दूरी कति हुनुपर्छ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Very close",
+        "np": "धेरै नजिक"
+      },
+      {
+        "id": "B",
+        "en": "Enough to stop safely",
+        "np": "सुरक्षित रूपमा रोक्न पुग्ने दूरी"
+      },
+      {
+        "id": "C",
+        "en": "No gap",
+        "np": "खाली ठाउँ छैन"
+      },
+      {
+        "id": "D",
+        "en": "1 meter",
+        "np": "१ मिटर"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "10",
+    "category": "Technical",
+    "question": {
+      "en": "What is the function of brakes?",
+      "np": "ब्रेकको काम के हो?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Increase speed",
+        "np": "गति बढाउने"
+      },
+      {
+        "id": "B",
+        "en": "Stop the vehicle",
+        "np": "सवारी रोक्ने"
+      },
+      {
+        "id": "C",
+        "en": "Turn vehicle",
+        "np": "सवारी मोड्ने"
+      },
+      {
+        "id": "D",
+        "en": "Change gear",
+        "np": "गियर फेर्ने"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "11",
+    "category": "Traffic Signs",
+    "question": {
+      "en": "What does a red circular sign indicate?",
+      "np": "रातो गोलाकार चिन्हले के जनाउँछ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Warning",
+        "np": "चेतावनी"
+      },
+      {
+        "id": "B",
+        "en": "Mandatory",
+        "np": "अनिवार्य"
+      },
+      {
+        "id": "C",
+        "en": "Prohibition",
+        "np": "निषेध"
+      },
+      {
+        "id": "D",
+        "en": "Information",
+        "np": "जानकारी"
+      }
+    ],
+    "correctOptionId": "C",
+    "weightage": "A"
+  },
+  {
+    "id": "12",
+    "category": "Traffic Rules",
+    "question": {
+      "en": "Which side should you drive in Nepal?",
+      "np": "नेपालमा कुन साइडमा सवारी चलाइन्छ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Right",
+        "np": "दायाँ"
+      },
+      {
+        "id": "B",
+        "en": "Left",
+        "np": "बायाँ"
+      },
+      {
+        "id": "C",
+        "en": "Middle",
+        "np": "बीच"
+      },
+      {
+        "id": "D",
+        "en": "Any side",
+        "np": "जुनसुकै"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "13",
+    "category": "Safety",
+    "question": {
+      "en": "What should you do before changing lanes?",
+      "np": "लेन परिवर्तन गर्नु अघि के गर्नुपर्छ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Speed up",
+        "np": "गति बढाउनुहोस्"
+      },
+      {
+        "id": "B",
+        "en": "Check mirrors and signal",
+        "np": "ऐना हेरेर संकेत दिनुहोस्"
+      },
+      {
+        "id": "C",
+        "en": "Brake suddenly",
+        "np": "एक्कासी ब्रेक लगाउनुहोस्"
+      },
+      {
+        "id": "D",
+        "en": "Close eyes",
+        "np": "आँखा बन्द गर्नुहोस्"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "14",
+    "category": "Technical",
+    "question": {
+      "en": "What does a speedometer measure?",
+      "np": "स्पिडोमिटरले के मापन गर्छ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Fuel",
+        "np": "इन्धन"
+      },
+      {
+        "id": "B",
+        "en": "Speed",
+        "np": "गति"
+      },
+      {
+        "id": "C",
+        "en": "Distance",
+        "np": "दूरी"
+      },
+      {
+        "id": "D",
+        "en": "Temperature",
+        "np": "तापक्रम"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "15",
+    "category": "Traffic Signs",
+    "question": {
+      "en": "What does a blue sign indicate?",
+      "np": "निलो चिन्हले के जनाउँछ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Mandatory instruction",
+        "np": "अनिवार्य निर्देशन"
+      },
+      {
+        "id": "B",
+        "en": "Warning",
+        "np": "चेतावनी"
+      },
+      {
+        "id": "C",
+        "en": "Danger",
+        "np": "खतरा"
+      },
+      {
+        "id": "D",
+        "en": "Stop",
+        "np": "रोक्नुहोस्"
+      }
+    ],
+    "correctOptionId": "A",
+    "weightage": "A"
+  },
+  {
+    "id": "16",
+    "category": "Traffic Rules",
+    "question": {
+      "en": "What should you do when an ambulance approaches?",
+      "np": "एम्बुलेन्स आउँदा के गर्नुपर्छ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Block the way",
+        "np": "बाटो छेक्नुहोस्"
+      },
+      {
+        "id": "B",
+        "en": "Give way immediately",
+        "np": "तुरुन्तै बाटो दिनुहोस्"
+      },
+      {
+        "id": "C",
+        "en": "Ignore",
+        "np": "वास्ता नगर्नुहोस्"
+      },
+      {
+        "id": "D",
+        "en": "Race with it",
+        "np": "प्रतिस्पर्धा गर्नुहोस्"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "17",
+    "category": "Safety",
+    "question": {
+      "en": "What is the purpose of a seatbelt?",
+      "np": "सिटबेल्टको उद्देश्य के हो?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Comfort",
+        "np": "आराम"
+      },
+      {
+        "id": "B",
+        "en": "Safety during accidents",
+        "np": "दुर्घटनामा सुरक्षा"
+      },
+      {
+        "id": "C",
+        "en": "Decoration",
+        "np": "सजावट"
+      },
+      {
+        "id": "D",
+        "en": "Speed increase",
+        "np": "गति बढाउने"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "18",
+    "category": "Traffic Signs",
+    "question": {
+      "en": "What does a 'No Entry' sign indicate?",
+      "np": "'प्रवेश निषेध' चिन्हले के जनाउँछ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Entry allowed",
+        "np": "प्रवेश अनुमति"
+      },
+      {
+        "id": "B",
+        "en": "No vehicles allowed",
+        "np": "सवारी प्रवेश निषेध"
+      },
+      {
+        "id": "C",
+        "en": "Parking allowed",
+        "np": "पार्किङ अनुमति"
+      },
+      {
+        "id": "D",
+        "en": "Turn left",
+        "np": "बायाँ मोड्नुहोस्"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "19",
+    "category": "Technical",
+    "question": {
+      "en": "What is clutch used for?",
+      "np": "क्लचको प्रयोग केका लागि हुन्छ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Braking",
+        "np": "ब्रेक लगाउन"
+      },
+      {
+        "id": "B",
+        "en": "Changing gears",
+        "np": "गियर फेर्न"
+      },
+      {
+        "id": "C",
+        "en": "Steering",
+        "np": "स्टेयरिङ"
+      },
+      {
+        "id": "D",
+        "en": "Lighting",
+        "np": "बत्ती बाल्न"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "20",
+    "category": "Traffic Rules",
+    "question": {
+      "en": "What should you do at a yellow traffic light?",
+      "np": "पहेंलो बत्तीमा के गर्नुपर्छ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Speed up",
+        "np": "गति बढाउनुहोस्"
+      },
+      {
+        "id": "B",
+        "en": "Prepare to stop",
+        "np": "रोकिन तयार हुनुहोस्"
+      },
+      {
+        "id": "C",
+        "en": "Ignore",
+        "np": "वास्ता नगर्नुहोस्"
+      },
+      {
+        "id": "D",
+        "en": "Turn right",
+        "np": "दायाँ मोड्नुहोस्"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "21",
+    "category": "Safety",
+    "question": {
+      "en": "Why should you not use a phone while driving?",
+      "np": "ड्राइभ गर्दा फोन किन प्रयोग गर्नु हुँदैन?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Consumes battery",
+        "np": "ब्याट्री सकिन्छ"
+      },
+      {
+        "id": "B",
+        "en": "Distracts attention",
+        "np": "ध्यान भंग हुन्छ"
+      },
+      {
+        "id": "C",
+        "en": "Illegal everywhere",
+        "np": "सबै ठाउँमा गैरकानुनी"
+      },
+      {
+        "id": "D",
+        "en": "Slows car",
+        "np": "गाडी ढिलो हुन्छ"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "22",
+    "category": "Traffic Signs",
+    "question": {
+      "en": "What does a 'Stop' sign mean?",
+      "np": "'रोक' चिन्हले के जनाउँछ?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Slow down",
+        "np": "गति घटाउनुहोस्"
+      },
+      {
+        "id": "B",
+        "en": "Complete stop",
+        "np": "पूर्ण रूपमा रोक्नुहोस्"
+      },
+      {
+        "id": "C",
+        "en": "Turn left",
+        "np": "बायाँ मोड्नुहोस्"
+      },
+      {
+        "id": "D",
+        "en": "Go ahead",
+        "np": "अगाडि बढ्नुहोस्"
+      }
+    ],
+    "correctOptionId": "B",
+    "weightage": "A"
+  },
+  {
+    "id": "23",
+    "category": "Technical",
+    "question": {
+      "en": "What does engine oil do?",
+      "np": "इन्जिन आयलको काम के हो?"
+    },
+    "options": [
+      {
+        "id": "A",
+        "en": "Clean fuel",
+        "np": "इन्धन सफा गर्ने"
+      },
+      {
+        "id": "B",
+        "en": "Lubricate engine parts",
+        "np": "इन्जिन भागलाई चिल्लो बनाउने"
+      },
+      {
+        "id": "C",
+        "en": "Increase speed",
+        "np": "गति बढाउने"
+      },
+      {
+        "id": "D",
+        "en": "Cool tyres",
+        "np": "टायर चिस्याउने"
+      }
+    ],
+    "correctOptionId": "B",
     "weightage": "A"
   }
 ]

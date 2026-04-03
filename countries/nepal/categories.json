@@ -1,0 +1,27 @@
+[
+  {
+    "id": "traffic-rules",
+    "title": { "en": "Traffic Rules", "local": "ट्राफिक नियम" },
+    "icon": "road",
+    "sortOrder": 1
+  },
+  {
+    "id": "road-signs",
+    "title": { "en": "Road Signs", "local": "ट्राफिक संकेत" },
+    "icon": "sign",
+    "sortOrder": 2
+  },
+  {
+    "id": "safety",
+    "title": { "en": "Safety", "local": "सुरक्षा" },
+    "icon": "shield",
+    "sortOrder": 3
+  },
+  {
+    "id": "vehicle-handling",
+    "title": { "en": "Vehicle Handling", "local": "सवारी साधन सञ्चालन" },
+    "icon": "car",
+    "sortOrder": 4
+  }
+]
+

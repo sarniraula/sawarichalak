@@ -1,0 +1,46 @@
+[
+  {
+    "id": "au-traffic-1",
+    "categoryId": "traffic-rules",
+    "title": { "en": "Red lights and crossings", "local": "Red lights and crossings" },
+    "body": {
+      "en": "Stop at red signals. Give way at crossings according to the rules.",
+      "local": "Stop at red signals. Give way at crossings according to the rules."
+    },
+    "keyRules": [
+      { "en": "Always signal early.", "local": "Always signal early." }
+    ]
+  },
+  {
+    "id": "au-signs-1",
+    "categoryId": "road-signs",
+    "title": { "en": "Understand sign shapes", "local": "Understand sign shapes" },
+    "body": {
+      "en": "Triangles warn. Circles commonly indicate restrictions or mandatory actions.",
+      "local": "Triangles warn. Circles commonly indicate restrictions or mandatory actions."
+    },
+    "image": {
+      "url": "https://dummyimage.com/600x300/ef4444/ffffff.png&text=Road+Sign",
+      "caption": { "en": "Example road sign (placeholder)", "local": "Example road sign (placeholder)" }
+    }
+  },
+  {
+    "id": "au-safety-1",
+    "categoryId": "safety",
+    "title": { "en": "Seatbelts and safe behavior", "local": "Seatbelts and safe behavior" },
+    "body": {
+      "en": "Wear seatbelts and keep a safe following distance.",
+      "local": "Wear seatbelts and keep a safe following distance."
+    }
+  },
+  {
+    "id": "au-handling-1",
+    "categoryId": "vehicle-handling",
+    "title": { "en": "Safe lane changes", "local": "Safe lane changes" },
+    "body": {
+      "en": "Check mirrors and blind spots, then signal before moving into another lane.",
+      "local": "Check mirrors and blind spots, then signal before moving into another lane."
+    }
+  }
+]
+

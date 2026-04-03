@@ -1,0 +1,27 @@
+[
+  {
+    "id": "traffic-rules",
+    "title": { "en": "Traffic Rules", "local": "Traffic Rules" },
+    "icon": "road",
+    "sortOrder": 1
+  },
+  {
+    "id": "road-signs",
+    "title": { "en": "Road Signs", "local": "Road Signs" },
+    "icon": "sign",
+    "sortOrder": 2
+  },
+  {
+    "id": "safety",
+    "title": { "en": "Safety", "local": "Safety" },
+    "icon": "shield",
+    "sortOrder": 3
+  },
+  {
+    "id": "vehicle-handling",
+    "title": { "en": "Vehicle Handling", "local": "Vehicle Handling" },
+    "icon": "car",
+    "sortOrder": 4
+  }
+]
+

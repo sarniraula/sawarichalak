@@ -7,15 +7,23 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ResultsScreen() {
   const router = useRouter();
-  const { history, language } = useExamStore();
+  const { history, lang } = useExamStore();
+  const language = lang;
 
   const lastResult = history[0];
+
+  const weakCategories =
+    lastResult.categoryStats?.slice().sort((a, b) => {
+      const ar = a.correct / Math.max(1, a.total);
+      const br = b.correct / Math.max(1, b.total);
+      return ar - br;
+    }) ?? [];
 
   useEffect(() => {
     if (!lastResult) {
       router.replace('/(tabs)/exam');
     }
-  }, [lastResult]);
+  }, [lastResult, router]);
 
   if (!lastResult) return null;
 
@@ -54,6 +62,36 @@ export default function ResultsScreen() {
             </Text>
           </View>
 
+          <View className="mb-8">
+            <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-2">
+              {language === 'en' ? 'Accuracy' : 'सटीकता'}
+            </Text>
+            <Text className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">{lastResult.accuracyPercent}%</Text>
+          </View>
+
+          <View className="mb-2">
+            <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-2">
+              {language === 'en' ? 'Weak Categories' : 'कमजोर वर्गहरू'}
+            </Text>
+            <View className="space-y-3">
+              {weakCategories.slice(0, 3).map((c) => {
+                const pct = Math.round((c.correct / Math.max(1, c.total)) * 100);
+                return (
+                  <View key={c.categoryId} className="bg-zinc-50 dark:bg-zinc-800 rounded-2xl p-4 border border-zinc-100 dark:border-zinc-700/60">
+                    <Text className="text-sm font-bold text-zinc-800 dark:text-zinc-100">{c.categoryId}</Text>
+                    <View className="h-2 bg-zinc-200 dark:bg-zinc-700 rounded-full mt-3 overflow-hidden">
+                      <View style={{ width: `${pct}%` }} className="h-full bg-red-500/80" />
+                    </View>
+                    <Text className="text-xs text-zinc-500 dark:text-zinc-400 mt-2 font-bold">{pct}%</Text>
+                  </View>
+                );
+              })}
+              {weakCategories.length === 0 && (
+                <Text className="text-sm text-zinc-500 dark:text-zinc-400">No category stats yet.</Text>
+              )}
+            </View>
+          </View>
+
           <View className="flex-row justify-between pt-6 border-t border-zinc-100 dark:border-zinc-800">
             <View>
               <Text className="text-xs text-zinc-500 dark:text-zinc-400 font-bold mb-1 uppercase tracking-wider">Status</Text>
@@ -61,7 +99,7 @@ export default function ResultsScreen() {
             </View>
             <View className="items-end">
               <Text className="text-xs text-zinc-500 dark:text-zinc-400 font-bold mb-1 uppercase tracking-wider">Date</Text>
-              <Text className="font-bold text-zinc-800 dark:text-zinc-200">{new Date(lastResult.date).toLocaleDateString()}</Text>
+              <Text className="font-bold text-zinc-800 dark:text-zinc-200">{new Date(lastResult.createdAt).toLocaleDateString()}</Text>
             </View>
           </View>
         </View>

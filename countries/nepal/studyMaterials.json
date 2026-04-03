@@ -1,0 +1,77 @@
+[
+  {
+    "id": "nepal-traffic-rules-1",
+    "categoryId": "traffic-rules",
+    "title": {
+      "en": "Red lights and right of way",
+      "local": "रातो बत्ती र प्राथमिकता"
+    },
+    "body": {
+      "en": "Stop at red signals. Give way to pedestrians and vehicles as per the right-of-way rules.",
+      "local": "रातो संकेतमा रोक्नुहोस्। पैदल यात्री र सवारीलाई प्राथमिकताको नियमअनुसार बाटो दिनुहोस्।"
+    },
+    "keyRules": [
+      {
+        "en": "Red means stop, even if the road is clear.",
+        "local": "रातोको अर्थ रोक्नु हो, बाटो खाली भए पनि।"
+      },
+      {
+        "en": "Use indicators before turning or lane changes.",
+        "local": "मोड्नु वा लेन परिवर्तन गर्नु अघि संकेत दिनुहोस्।"
+      }
+    ]
+  },
+  {
+    "id": "nepal-road-signs-1",
+    "categoryId": "road-signs",
+    "title": {
+      "en": "Mandatory and prohibition signs",
+      "local": "अनिवार्य र निषेध संकेतहरू"
+    },
+    "body": {
+      "en": "Understand common shapes: triangles often warn, circles may indicate prohibition or mandatory actions.",
+      "local": "सामान्य आकार बुझ्नुहोस्: त्रिकोणले प्रायः चेतावनी, गोलाले निषेध वा अनिवार्य कार्य जनाउन सक्छ।"
+    },
+    "keyRules": [
+      { "en": "Follow the sign even if you feel confident.", "local": "आत्मविश्वास भए पनि संकेत पालना गर्नुहोस्।" }
+    ],
+    "image": {
+      "url": "https://dummyimage.com/600x300/0ea5e9/ffffff.png&text=Road+Sign",
+      "caption": {
+        "en": "Example road sign (placeholder)",
+        "local": "उदाहरण संकेत (placeholder)"
+      }
+    }
+  },
+  {
+    "id": "nepal-safety-1",
+    "categoryId": "safety",
+    "title": {
+      "en": "Helmet and seatbelt basics",
+      "local": "हेल्मेट र सिटबेल्टको आधार"
+    },
+    "body": {
+      "en": "Wear a helmet on two-wheelers and use seatbelts in all vehicles to reduce injury during accidents.",
+      "local": "दुई पाङ्ग्रेमा हेल्मेट र सवारीमा सिटबेल्ट प्रयोग गर्दा दुर्घटनामा चोट कम हुन्छ।"
+    },
+    "keyRules": [
+      { "en": "Secure properly; fit matters.", "local": "ठीकसँग बाँध्नुहोस्; मिल्नुपर्छ।" }
+    ]
+  },
+  {
+    "id": "nepal-vehicle-handling-1",
+    "categoryId": "vehicle-handling",
+    "title": {
+      "en": "Safe lane change",
+      "local": "सुरक्षित लेन परिवर्तन"
+    },
+    "body": {
+      "en": "Check mirrors, signal, and confirm the blind spot is clear before changing lanes.",
+      "local": "ऐना हेर्नुहोस्, संकेत दिनुहोस्, र आँखाको अन्धो स्थान खाली छ कि छैन पुष्टि गर्नुहोस्।"
+    },
+    "keyRules": [
+      { "en": "Signal early and look twice.", "local": "पहिले संकेत दिनुहोस् र दुई पटक हेर्नुहोस्।" }
+    ]
+  }
+]
+

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "au-mock-bike",
+    "licenseType": "Bike",
+    "mode": "mock",
+    "questionCount": 40,
+    "timeSeconds": 2700,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "au-mock-car",
+    "licenseType": "Car",
+    "mode": "mock",
+    "questionCount": 40,
+    "timeSeconds": 2700,
+    "passMarkPercent": 50
+  },
+  {
+    "id": "au-mock-heavy",
+    "licenseType": "Heavy Vehicle",
+    "mode": "mock",
+    "questionCount": 40,
+    "timeSeconds": 2700,
+    "passMarkPercent": 50
+  }
+]
+

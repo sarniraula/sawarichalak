@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { User, signOut as fSignOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
+import { useProfileStore } from '@/store/profileStore';
+import { useExamStore } from '@/store/examStore';
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -35,5 +37,14 @@ onAuthStateChanged(auth, (user) => {
   useAuthStore.getState().setUser(user);
   if (!useAuthStore.getState().initialized) {
     useAuthStore.getState().setInitialized(true);
+  }
+  // Hydrate the user profile (country/license type) for country-based content.
+  if (user) {
+    useProfileStore.getState().loadProfile().catch(() => {
+      // profile hydration failure shouldn't block app login
+    });
+    useExamStore.getState().syncHistoryFromFirestore().catch(() => {});
+  } else {
+    useProfileStore.getState().setProfile(null);
   }
 });

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "ca-traffic-1",
+    "categoryId": "traffic-rules",
+    "title": { "en": "Right of way basics", "local": "Notions de priorité" },
+    "body": {
+      "en": "Stop at red signals and follow right-of-way rules. Yield to pedestrians when required.",
+      "local": "Arrêtez-vous aux feux rouges et suivez les règles de priorité. Céder le passage aux piétons si nécessaire."
+    },
+    "keyRules": [
+      { "en": "Always signal before turning or lane changes.", "local": "Toujours signaler avant de tourner ou changer de voie." }
+    ]
+  },
+  {
+    "id": "ca-signs-1",
+    "categoryId": "road-signs",
+    "title": { "en": "Interpret common shapes", "local": "Interpréter les formes courantes" },
+    "body": {
+      "en": "Triangles typically warn; circles often relate to prohibitions or mandatory actions.",
+      "local": "Les triangles avertissent généralement ; les cercles indiquent souvent des interdictions ou des actions obligatoires."
+    },
+    "image": {
+      "url": "https://dummyimage.com/600x300/f59e0b/ffffff.png&text=Road+Sign",
+      "caption": { "en": "Example road sign (placeholder)", "local": "Exemple (placeholder)" }
+    }
+  },
+  {
+    "id": "ca-safety-1",
+    "categoryId": "safety",
+    "title": { "en": "Seatbelts and helmets", "local": "Ceintures et casques" },
+    "body": {
+      "en": "Wear seatbelts to reduce injuries. Wear helmets on two-wheelers.",
+      "local": "Portez la ceinture pour réduire les blessures. Portez un casque à deux roues."
+    }
+  },
+  {
+    "id": "ca-handling-1",
+    "categoryId": "vehicle-handling",
+    "title": { "en": "Safe lane change", "local": "Changement de voie en sécurité" },
+    "body": {
+      "en": "Check mirrors, signal early, and confirm the blind spot is clear before changing lanes.",
+      "local": "Vérifiez les rétroviseurs, signalez tôt et assurez-vous que l’angle mort est libre avant de changer de voie."
+    }
+  }
+]
+

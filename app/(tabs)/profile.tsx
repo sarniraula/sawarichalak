@@ -12,7 +12,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProfileScreen() {
   const { user, updateUser, logout } = useAuthStore();
-  const { history, language, setLanguage } = useExamStore();
+  const { history, lang, setLanguage } = useExamStore();
+  const language = lang;
 
   const [displayName, setDisplayName] = useState(user?.displayName || '');
   const [loading, setLoading] = useState(false);
@@ -43,9 +44,11 @@ export default function ProfileScreen() {
 
       // If a new image was selected, upload it
       if (selectedImage && selectedImage !== user?.photoURL) {
+        const uid = auth.currentUser.uid;
         const response = await fetch(selectedImage);
         const blob = await response.blob();
-        const imageRef = ref(storage, `profiles/${user?.uid}`);
+        // Store under a user-owned folder so Storage Rules can be strict.
+        const imageRef = ref(storage, `profiles/${uid}/avatar.jpg`);
         await uploadBytes(imageRef, blob);
         photoURL = await getDownloadURL(imageRef);
       }
@@ -72,7 +75,7 @@ export default function ProfileScreen() {
   };
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'np' : 'en');
+    setLanguage(language === 'en' ? 'local' : 'en');
   };
 
   return (

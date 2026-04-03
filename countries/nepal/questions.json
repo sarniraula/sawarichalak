@@ -1,0 +1,73 @@
+[
+  {
+    "id": "np-q-001",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": { "en": "At a steady red traffic light, what must you do?", "local": "स्थिर रातो ट्राफिक बत्तीमा तपाईंले के गर्नुपर्छ?" },
+    "options": [
+      { "id": "A", "en": "Stop before the stop line", "local": "स्टप लाइनअगाडि रोक्नुहोस्" },
+      { "id": "B", "en": "Slow down but continue", "local": "गति घटाएर अगाडि बढ्नुहोस्" },
+      { "id": "C", "en": "Honk and proceed", "local": "हर्न बजाएर अघि बढ्नुहोस्" },
+      { "id": "D", "en": "Proceed if no traffic is seen", "local": "ट्राफिक नदेखिए अघि बढ्नुहोस्" }
+    ],
+    "correctOptionId": "A",
+    "explanation": { "en": "A red signal requires a complete stop at the stop line or before the intersection.", "local": "रातो संकेतमा स्टप लाइन वा जक्सनअगाडि पूर्ण रूपमा रोक्नुपर्छ।" }
+  },
+  {
+    "id": "np-q-002",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": { "en": "What does a steady green traffic light mean for you?", "local": "स्थिर हरियो बत्तीले तपाईंका लागि के अर्थ दिन्छ?" },
+    "options": [
+      { "id": "A", "en": "Go, but only if the intersection is clear", "local": "जक्सन खाली भए मात्र जानुहोस्" },
+      { "id": "B", "en": "Stop immediately", "local": "तुरुन्त रोक्नुहोस्" },
+      { "id": "C", "en": "Turn only (no straight)", "local": "मात्र मोड्नु (सिधा जान पाइँदैन)" },
+      { "id": "D", "en": "Go without checking", "local": "नहेरीकनै जानुहोस्" }
+    ],
+    "correctOptionId": "A",
+    "explanation": { "en": "Green permits movement, but you must still yield to hazards and ensure the way is clear.", "local": "हरियोमा चल्न पाइन्छ, तर खतरा छैन भनेर हेरेर मात्र अघि बढ्नु पर्छ।" }
+  },
+  {
+    "id": "np-q-003",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": { "en": "At a yellow/amber traffic light, the safest action is usually to…", "local": "पहेंलो/एम्बर बत्तीमा सबैभन्दा सुरक्षित काम के हो?" },
+    "options": [
+      { "id": "A", "en": "Prepare to stop unless you are too close to stop safely", "local": "सुरक्षित रूपमा रोक्न नसक्ने अवस्थामा बाहेक रोक्न तयारी गर्नुहोस्" },
+      { "id": "B", "en": "Speed up no matter what", "local": "जसरी पनि गतिको बढाउनुहोस्" },
+      { "id": "C", "en": "Reverse a little", "local": "अलि पछाडि फर्कनुहोस्" },
+      { "id": "D", "en": "Switch off headlights", "local": "हेडलाईट बन्द गर्नुहोस्" }
+    ],
+    "correctOptionId": "A",
+    "explanation": { "en": "Amber warns the signal will change; stop if you can do so safely without harsh braking.", "local": "पहेंलोले संकेत परिवर्तन हुँदैछ भन्छ; सुरक्षित भए रोक्नुहोस्।" }
+  },
+  {
+    "id": "np-q-004",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car"],
+    "question": { "en": "When is overtaking appropriate?", "local": "ओभरटेक कहिले उपयुक्त हुन्छ?" },
+    "options": [
+      { "id": "A", "en": "When the road ahead is clear and you can do it safely", "local": "अगाडिको बाटो स्पष्ट र सुरक्षित हुँदा" },
+      { "id": "B", "en": "On sharp bends", "local": "तेज घुम्तीमा" },
+      { "id": "C", "en": "On pedestrian crossings", "local": "पैदल यात्रु क्रसिङमा" },
+      { "id": "D", "en": "Near blind corners", "local": "नदेखिने मोड नजिक" }
+    ],
+    "correctOptionId": "A",
+    "explanation": { "en": "Overtake only when you have clear visibility and enough space to complete it safely.", "local": "दृश्यता र ठाउँ स्पष्ट हुँदा मात्र सुरक्षित रूपमा ओभरटेक गर्नुहोस्।" }
+  },
+  {
+    "id": "np-q-005",
+    "categoryId": "traffic-rules",
+    "licenseTypes": ["Bike", "Car", "Heavy Vehicle"],
+    "question": { "en": "In Nepal, you should generally drive on which side of the road?", "local": "नेपालमा सामान्यतया कुन साइडमा सवारी चलाइन्छ?" },
+    "options": [
+      { "id": "A", "en": "Left", "local": "बायाँ" },
+      { "id": "B", "en": "Right", "local": "दायाँ" },
+      { "id": "C", "en": "Middle", "local": "बीच" },
+      { "id": "D", "en": "Any side", "local": "जुनसुकै" }
+    ],
+    "correctOptionId": "A",
+    "explanation": { "en": "Nepal follows left-hand traffic: keep left and overtake from the right.", "local": "नेपालमा बायाँबाट सवारी चलाइन्छ: बायाँ राख्नुहोस् र दायाँबाट उछिन्नुहोस्।" }
+  }
+]
+

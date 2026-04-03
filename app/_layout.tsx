@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useAuthStore } from '@/store/authStore';
+import { useThemeStore } from '@/store/themeStore';
+import { prewarmAllCountries } from '@/services/countryContent';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Redirect, Stack, useRootNavigationState, useSegments } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -11,22 +14,22 @@ export const unstable_settings = {
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const systemScheme = useColorScheme();
+  const { themePreference } = useThemeStore();
+  const colorScheme =
+    themePreference === 'system' ? (systemScheme ?? 'light') : themePreference;
   const { isAuthenticated } = useAuthStore();
   const segments = useSegments();
   const navigationState = useRootNavigationState();
 
-  if (!navigationState?.key) return null; // wait until ready
+  useEffect(() => {
+    // Best-effort cache fill for offline mode.
+    prewarmAllCountries().catch(() => {});
+  }, []);
 
   const inAuthGroup = segments[0] === '(auth)';
 
-  if (!isAuthenticated && !inAuthGroup) {
-    return <Redirect href="/(auth)/login" />;
-  }
-
-  if (isAuthenticated && inAuthGroup) {
-    return <Redirect href="/(tabs)" />;
-  }
+  const navReady = !!navigationState?.key;
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
@@ -35,6 +38,8 @@ export default function RootLayout() {
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
       </Stack>
+      {navReady && !isAuthenticated && !inAuthGroup ? <Redirect href="/(auth)/login" /> : null}
+      {navReady && isAuthenticated && inAuthGroup ? <Redirect href="/(tabs)" /> : null}
       <StatusBar style="auto" />
     </ThemeProvider>
   );
