@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import { useExamStore } from '@/store/examStore';
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function HistoryScreen() {
+  const router = useRouter();
   const { history, clearHistory, lang } = useExamStore();
   const language = lang;
 
@@ -83,8 +85,10 @@ export default function HistoryScreen() {
         ) : (
           <View className="space-y-4">
             {history.map((item) => (
-              <View 
-                key={item.id} 
+              <TouchableOpacity
+                key={item.id}
+                activeOpacity={0.85}
+                onPress={() => router.push(`/(exam)/review?attemptId=${item.id}`)}
                 className="bg-white dark:bg-zinc-900 p-5 rounded-2xl flex-row items-center justify-between border border-zinc-100 dark:border-zinc-800/50 shadow-sm mb-4"
               >
                 <View className="flex-row items-center flex-1">
@@ -114,7 +118,7 @@ export default function HistoryScreen() {
                     {item.accuracyPercent}% Accuracy
                   </Text>
                 </View>
-              </View>
+              </TouchableOpacity>
             ))}
           </View>
         )}

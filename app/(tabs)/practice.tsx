@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { FontAwesome } from '@expo/vector-icons';
 
 import { useProfileStore } from '@/store/profileStore';
 import { useQuizStore } from '@/store/quizStore';
+import { useFlashcardStore } from '@/store/flashcardStore';
 import { loadCountryContent } from '@/services/countryContent';
 import type { Category } from '@/types/content';
 
@@ -13,6 +14,7 @@ export default function PracticeTabScreen() {
   const router = useRouter();
   const { profile } = useProfileStore();
   const { session, startPractice } = useQuizStore();
+  const { start: startFlashcards } = useFlashcardStore();
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
@@ -51,6 +53,23 @@ export default function PracticeTabScreen() {
     }
   };
 
+  const startFlashcardMode = async (categoryId?: string) => {
+    if (!profile) return;
+    setLoading(true);
+    try {
+      await startFlashcards({
+        country: profile.country,
+        licenseType: profile.licenseType,
+        categoryId,
+      });
+      router.push('/(quiz)/flashcards');
+    } catch (e: any) {
+      Alert.alert('Flashcards', e?.message ?? 'Could not start flashcards.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (!profile) {
     return (
       <SafeAreaView className="flex-1 bg-zinc-50 dark:bg-zinc-950 items-center justify-center">
@@ -76,12 +95,24 @@ export default function PracticeTabScreen() {
         <TouchableOpacity
           disabled={!canResume || loading}
           onPress={() => router.push('/(quiz)/session')}
-          className={`mb-6 rounded-2xl p-5 border ${
+          className={`mb-4 rounded-2xl p-5 border ${
             canResume ? 'bg-blue-600 border-blue-700' : 'bg-blue-200 dark:bg-blue-950 border-blue-200 opacity-60'
           }`}
         >
           <Text className={`text-white font-bold ${canResume ? '' : 'text-zinc-600 dark:text-zinc-300'}`}>Resume</Text>
           <Text className="text-blue-100 mt-1">Instant feedback MCQ</Text>
+        </TouchableOpacity>
+
+        <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-3 uppercase tracking-wider">
+          Flashcards
+        </Text>
+        <TouchableOpacity
+          disabled={loading}
+          onPress={() => startFlashcardMode(undefined)}
+          className="mb-6 rounded-2xl p-5 border border-indigo-200 dark:border-indigo-800 bg-indigo-500"
+        >
+          <Text className="text-white font-bold">Start flashcards (all topics)</Text>
+          <Text className="text-indigo-100 mt-1 text-sm">Tap to flip · no timer</Text>
         </TouchableOpacity>
 
         <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-3 uppercase tracking-wider">
@@ -124,23 +155,36 @@ export default function PracticeTabScreen() {
                 cat.id === 'traffic-rules' ? 'road' : cat.id === 'road-signs' ? 'warning' : cat.id === 'safety' ? 'shield' : 'car';
 
               return (
-                <TouchableOpacity
+                <View
                   key={cat.id}
-                  disabled={loading}
-                  onPress={() => start(cat.id)}
-                  className="bg-white dark:bg-zinc-900 rounded-2xl p-5 border border-zinc-200 dark:border-zinc-800/50 flex-row items-center justify-between"
+                  className="bg-white dark:bg-zinc-900 rounded-2xl p-5 border border-zinc-200 dark:border-zinc-800/50"
                 >
-                  <View className="flex-row items-center flex-1">
+                  <View className="flex-row items-center mb-3">
                     <View className={`w-12 h-12 rounded-full items-center justify-center mr-4 ${colorClass}`}>
                       <FontAwesome name={iconName as any} size={20} color="white" />
                     </View>
-                    <View className="flex-1 pr-2">
-                      <Text className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-1">{cat.title.en}</Text>
-                      <Text className="text-zinc-400 dark:text-zinc-500 text-sm font-medium">Practice questions</Text>
+                    <View className="flex-1">
+                      <Text className="text-xl font-bold text-zinc-900 dark:text-zinc-100">{cat.title.en}</Text>
+                      <Text className="text-zinc-400 dark:text-zinc-500 text-sm font-medium mt-0.5">MCQ or flashcards</Text>
                     </View>
                   </View>
-                  <FontAwesome name="chevron-right" size={16} color="#9ca3af" />
-                </TouchableOpacity>
+                  <View className="flex-row gap-3">
+                    <TouchableOpacity
+                      disabled={loading}
+                      onPress={() => start(cat.id)}
+                      className="flex-1 py-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 items-center"
+                    >
+                      <Text className="text-sm font-bold text-zinc-800 dark:text-zinc-200">MCQ</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      disabled={loading}
+                      onPress={() => startFlashcardMode(cat.id)}
+                      className="flex-1 py-3 rounded-xl bg-indigo-500 items-center"
+                    >
+                      <Text className="text-sm font-bold text-white">Flashcards</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               );
             })
           )}

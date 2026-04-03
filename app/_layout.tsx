@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Appearance } from 'react-native';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useAuthStore } from '@/store/authStore';
 import { useThemeStore } from '@/store/themeStore';
@@ -26,6 +27,14 @@ export default function RootLayout() {
     // Best-effort cache fill for offline mode.
     prewarmAllCountries().catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (themePreference === 'system') {
+      Appearance.setColorScheme(null);
+    } else {
+      Appearance.setColorScheme(themePreference);
+    }
+  }, [themePreference]);
 
   const inAuthGroup = segments[0] === '(auth)';
 

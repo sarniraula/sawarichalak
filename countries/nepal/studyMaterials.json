@@ -36,12 +36,48 @@
       { "en": "Follow the sign even if you feel confident.", "local": "आत्मविश्वास भए पनि संकेत पालना गर्नुहोस्।" }
     ],
     "image": {
-      "url": "https://dummyimage.com/600x300/0ea5e9/ffffff.png&text=Road+Sign",
+      "url": "https://images.unsplash.com/photo-1566004100631-35d015d6a491?w=800&q=80",
       "caption": {
-        "en": "Example road sign (placeholder)",
-        "local": "उदाहरण संकेत (placeholder)"
+        "en": "Study road signs by shape and colour before you practice.",
+        "local": "अभ्यास गर्नु अघि आकार र रङ्ग अनुसार सडक चिन्ह पढ्नुहोस्।"
       }
     }
+  },
+  {
+    "id": "nepal-traffic-rules-2",
+    "categoryId": "traffic-rules",
+    "title": {
+      "en": "Zebra crossings and priority",
+      "local": "जिब्रा क्रसिङ र प्राथमिकता"
+    },
+    "body": {
+      "en": "At marked pedestrian crossings, pedestrians who are crossing or about to cross have priority. Slow down early, scan both sides, and stop if someone is on the crossing. Do not overtake vehicles that have stopped for pedestrians. Avoid using the horn near schools and hospitals.",
+      "local": "चिन्हित पैदल यात्रु क्रसिङमा पार हुन लागेका वा पार गर्दै गरेका पैदल यात्रुलाई प्राथमिकता दिनुपर्छ। अगाडि चाँडो गति घटाउनुहोस्, दुवैतिर हेर्नुहोस्, र क्रसिङमा कोही भए रोक्नुहोस्। पैदल यात्रुलाई बाटो दिएर रोकिएका सवारीहरूलाई उछिन्नु हुँदैन। विद्यालय र अस्पताल नजिक हर्न बजाउनु हुँदैन।"
+    },
+    "keyRules": [
+      {
+        "en": "Never accelerate to “beat” pedestrians at a crossing.",
+        "local": "क्रसिङमा पैदल यात्रुसँग “प्रतिस्पर्धा” गर्न गति बढाउनु हुँदैन।"
+      }
+    ]
+  },
+  {
+    "id": "nepal-road-signs-2",
+    "categoryId": "road-signs",
+    "title": {
+      "en": "Reading speed and prohibition signs",
+      "local": "गति र निषेध चिन्ह पढ्ने"
+    },
+    "body": {
+      "en": "Circular signs with red borders often indicate a prohibition (e.g. no entry, no parking). A speed limit sign shows the maximum speed for that road; in poor weather or visibility you should drive below the limit. Blue signs are often mandatory: they tell you what you must do (e.g. turn left only).",
+      "local": "रातो किनार भएको गोलाकार चिन्हले प्रायः निषेध (जस्तै प्रवेश निषेध, पार्किङ निषेध) जनाउँछ। गति सीमा चिन्हले सो सडकको अधिकतम गति देखाउँछ; खराब मौसम वा कम दृश्यतामा सीमाभन्दा कम गतिमा चलाउनुपर्छ। निलो चिन्ह प्रायः अनिवार्य कार्य जनाउँछ।"
+    },
+    "keyRules": [
+      {
+        "en": "The posted limit is a maximum, not a target in rain or fog.",
+        "local": "राखिएको सीमा अधिकतम हो; पानी/कुहिरोमा लक्ष्य होइन।"
+      }
+    ]
   },
   {
     "id": "nepal-safety-1",

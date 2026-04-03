@@ -1,0 +1,50 @@
+[
+  {
+    "id": "nepal-dot-info",
+    "title": {
+      "en": "Department of Transport Management (Nepal)",
+      "local": "यातायात व्यवस्था विभाग (नेपाल)"
+    },
+    "description": {
+      "en": "Official government portal for vehicle registration, license, and transport notices.",
+      "local": "सवारी दर्ता, अनुमतिपत्र र यातायातसम्बन्धी आधिकारिक सूचनाहरू।"
+    },
+    "url": "https://www.dotm.gov.np/"
+  },
+  {
+    "id": "nepal-traffic-rules-moi",
+    "title": {
+      "en": "Traffic rules & road safety (MoHA overview)",
+      "local": "ट्राफिक नियम र सडक सुरक्षा"
+    },
+    "description": {
+      "en": "Reference material on obeying signals, signs, and safe driving habits.",
+      "local": "संकेत, चिन्ह पालना र सुरक्षित चालन सम्बन्धी सामग्री।"
+    },
+    "url": "https://www.nepalpolice.gov.np/"
+  },
+  {
+    "id": "who-road-safety",
+    "title": {
+      "en": "WHO — Road safety (global basics)",
+      "local": "WHO — सडक सुरक्षा (आधारभूत)"
+    },
+    "description": {
+      "en": "Speed, helmets, seatbelts, and risk factors explained for learners.",
+      "local": "गति, हेल्मेट, सिटबेल्ट र जोखिम कारकहरू।"
+    },
+    "url": "https://www.who.int/teams/social-determinants-of-health/safety-and-mobility/road-safety"
+  },
+  {
+    "id": "wiki-nepal-driving",
+    "title": {
+      "en": "Driving in Nepal (overview article)",
+      "local": "नेपालमा सवारी चलाउने (सामान्य लेख)"
+    },
+    "description": {
+      "en": "General reading on left-hand traffic and common road situations.",
+      "local": "बायाँ मार्ग र सामान्य सडक अवस्थाको बारेमा।"
+    },
+    "url": "https://en.wikipedia.org/wiki/Transport_in_Nepal"
+  }
+]

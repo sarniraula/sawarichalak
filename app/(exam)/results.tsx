@@ -104,12 +104,21 @@ export default function ResultsScreen() {
           </View>
         </View>
 
+        <TouchableOpacity
+          onPress={() => router.push(`/(exam)/review?attemptId=${lastResult.id}`)}
+          className="w-full bg-indigo-600 active:bg-indigo-700 py-4 rounded-xl items-center shadow-lg shadow-indigo-600/30 mb-4"
+        >
+          <Text className="text-white text-lg font-bold tracking-wide">
+            {language === 'en' ? 'Review answers' : 'उत्तर पुनरावलोकन'}
+          </Text>
+        </TouchableOpacity>
+
         <TouchableOpacity 
           onPress={() => router.replace('/(tabs)/exam')}
           className="w-full bg-blue-600 active:bg-blue-700 py-4 rounded-xl items-center shadow-lg shadow-blue-600/30 mb-8"
         >
           <Text className="text-white text-lg font-bold tracking-wide">
-            {language === 'en' ? 'Back to Dashboard' : 'ड्यासबोर्डमा फर्कनुहोस्'}
+            {language === 'en' ? 'Back to Exam' : 'परीक्षामा फर्कनुहोस्'}
           </Text>
         </TouchableOpacity>
         

@@ -1,9 +1,19 @@
-import type { CountryKey, LicenseType } from './content';
+import type { CountryKey, LicenseType, LocalizedOption, LocalizedText } from './content';
 
 export type CategoryStat = {
   categoryId: string;
   correct: number;
   total: number;
+};
+
+export type AttemptReviewItem = {
+  questionId: string;
+  categoryId: string;
+  question: LocalizedText;
+  options: LocalizedOption[];
+  correctOptionId: string;
+  /** User's selected option id, if any */
+  userAnswerId?: string;
 };
 
 export type AttemptBase = {
@@ -21,6 +31,8 @@ export type Attempt = AttemptBase & {
   accuracyPercent: number;
   passed?: boolean; // for mock exams
   categoryStats: CategoryStat[];
+  /** Full question snapshots + answers for post-exam review */
+  reviewItems?: AttemptReviewItem[];
 };
 
 export type ActiveTimedAttempt = Omit<Attempt, 'score' | 'accuracyPercent' | 'passed'> & {

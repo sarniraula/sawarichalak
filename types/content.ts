@@ -59,10 +59,19 @@ export type MockTestConfig = {
   passMarkPercent?: number;
 };
 
+export type ReadingLink = {
+  id: string;
+  title: LocalizedText;
+  description?: LocalizedText;
+  url: string;
+};
+
 export type CountryContent = {
   country: CountryKey;
   categories: Category[];
   studyMaterials: StudyMaterial[];
+  /** Optional curated external reading (articles, gov pages, blogs) */
+  readingLinks?: ReadingLink[];
   questions: Question[];
   mockTests: MockTestConfig[];
 };

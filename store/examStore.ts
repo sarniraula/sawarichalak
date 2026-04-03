@@ -209,6 +209,15 @@ export const useExamStore = create<ExamState>()(
 
         const userId = auth.currentUser?.uid ?? 'local-user';
 
+        const reviewItems = active.questions.map((q) => ({
+          questionId: q.id,
+          categoryId: q.categoryId,
+          question: q.question,
+          options: q.options,
+          correctOptionId: q.correctOptionId,
+          userAnswerId: active.answers[q.id],
+        }));
+
         const result: Attempt = {
           id: Date.now().toString(),
           userId,
@@ -221,6 +230,7 @@ export const useExamStore = create<ExamState>()(
           accuracyPercent,
           passed,
           categoryStats,
+          reviewItems,
         };
 
         set((s) => ({

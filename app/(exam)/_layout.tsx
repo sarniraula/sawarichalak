@@ -5,6 +5,7 @@ export default function ExamLayout() {
     <Stack>
       <Stack.Screen name="test" options={{ headerShown: false, gestureEnabled: false }} />
       <Stack.Screen name="results" options={{ headerShown: false, gestureEnabled: false }} />
+      <Stack.Screen name="review" options={{ headerShown: false }} />
     </Stack>
   );
 }

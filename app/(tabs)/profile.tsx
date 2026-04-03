@@ -1,23 +1,56 @@
 import { auth, storage } from '@/lib/firebase';
 import { useAuthStore } from '@/store/authStore';
 import { useExamStore } from '@/store/examStore';
+import { useProfileStore } from '@/store/profileStore';
+import { useRegionStore, type CanadaRegionKey } from '@/store/regionStore';
+import { useThemeStore } from '@/store/themeStore';
+import type { CountryKey, LicenseType } from '@/types/content';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { updateProfile } from 'firebase/auth';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Alert, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+const COUNTRY_OPTIONS: { key: CountryKey; label: string }[] = [
+  { key: 'nepal', label: 'Nepal' },
+  { key: 'uk', label: 'UK' },
+  { key: 'canada', label: 'Canada' },
+  { key: 'australia', label: 'Australia' },
+];
+
+const LICENSE_OPTIONS: { key: LicenseType; label: string }[] = [
+  { key: 'Bike', label: 'Bike' },
+  { key: 'Car', label: 'Car' },
+  { key: 'Heavy Vehicle', label: 'Heavy Vehicle' },
+];
 
 export default function ProfileScreen() {
   const { user, updateUser, logout } = useAuthStore();
   const { history, lang, setLanguage } = useExamStore();
+  const { profile, initialized, loadProfile, setCountry, setLicenseType } = useProfileStore();
+  const { themePreference, setThemePreference } = useThemeStore();
+  const { canadaRegionKey, setCanadaRegionKey } = useRegionStore();
   const language = lang;
 
   const [displayName, setDisplayName] = useState(user?.displayName || '');
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [updatingPrefs, setUpdatingPrefs] = useState(false);
+
+  useEffect(() => {
+    setDisplayName(user?.displayName || '');
+  }, [user?.displayName]);
+
+  useEffect(() => {
+    if (!profile) loadProfile().catch(() => {});
+  }, [profile, loadProfile]);
+
+  const isBusyText = useMemo(() => {
+    return profile ? `${profile.country} • ${profile.licenseType}` : '';
+  }, [profile]);
 
   // Statistics calculations
   const totalExams = history.length;
@@ -76,6 +109,28 @@ export default function ProfileScreen() {
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'local' : 'en');
+  };
+
+  const handleCountryPress = async (next: CountryKey) => {
+    try {
+      setUpdatingPrefs(true);
+      await setCountry(next);
+    } catch (e: any) {
+      Alert.alert('Error', e?.message ?? 'Failed to update country.');
+    } finally {
+      setUpdatingPrefs(false);
+    }
+  };
+
+  const handleLicensePress = async (next: LicenseType) => {
+    try {
+      setUpdatingPrefs(true);
+      await setLicenseType(next);
+    } catch (e: any) {
+      Alert.alert('Error', e?.message ?? 'Failed to update license type.');
+    } finally {
+      setUpdatingPrefs(false);
+    }
   };
 
   return (
@@ -181,23 +236,143 @@ export default function ProfileScreen() {
             {/* App Settings Section */}
             <View>
               <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-3 uppercase tracking-wider ml-1 mt-6">App Settings</Text>
-              <View className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
+              <Text className="text-sm text-zinc-500 dark:text-zinc-400 mb-4 ml-1">
+                {profile ? isBusyText : initialized ? 'Profile unavailable.' : 'Loading...'}
+              </Text>
+
+              {!profile ? (
                 <TouchableOpacity
-                  onPress={toggleLanguage}
-                  className="p-4 flex-row items-center justify-between"
-                  activeOpacity={0.7}
+                  onPress={() => loadProfile().catch(() => {})}
+                  className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-4 items-center"
                 >
-                  <View className="flex-row items-center">
-                    <Ionicons name="language-outline" size={20} color="#6b7280" className="mr-3" />
-                    <Text className="ml-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">Language</Text>
-                  </View>
-                  <View className="bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-full">
-                    <Text className="text-xs font-bold text-zinc-900 dark:text-zinc-100">
-                      {language === 'en' ? 'English' : 'Nepali'}
-                    </Text>
-                  </View>
+                  <Text className="text-blue-600 font-bold">{initialized ? 'Retry load profile' : 'Loading profile...'}</Text>
                 </TouchableOpacity>
-              </View>
+              ) : (
+                <>
+                  <View className="mb-4">
+                    <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-2 uppercase">Country</Text>
+                    <View className="flex-row flex-wrap gap-2">
+                      {COUNTRY_OPTIONS.map((opt) => (
+                        <TouchableOpacity
+                          key={opt.key}
+                          disabled={updatingPrefs}
+                          onPress={() => handleCountryPress(opt.key)}
+                          className={`px-4 py-2 rounded-xl border ${
+                            profile.country === opt.key
+                              ? 'bg-blue-600 border-blue-700'
+                              : 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800/50'
+                          }`}
+                        >
+                          <Text
+                            className={
+                              profile.country === opt.key ? 'text-white font-bold' : 'text-zinc-800 dark:text-zinc-100 font-bold'
+                            }
+                          >
+                            {opt.label}
+                          </Text>
+                        </TouchableOpacity>
+                      ))}
+                    </View>
+                  </View>
+
+                  <View className="mb-4">
+                    <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-2 uppercase">License type</Text>
+                    <View className="flex-row flex-wrap gap-2">
+                      {LICENSE_OPTIONS.map((opt) => (
+                        <TouchableOpacity
+                          key={opt.key}
+                          disabled={updatingPrefs}
+                          onPress={() => handleLicensePress(opt.key)}
+                          className={`px-4 py-2 rounded-xl border ${
+                            profile.licenseType === opt.key
+                              ? 'bg-purple-600 border-purple-700'
+                              : 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800/50'
+                          }`}
+                        >
+                          <Text
+                            className={
+                              profile.licenseType === opt.key ? 'text-white font-bold' : 'text-zinc-800 dark:text-zinc-100 font-bold'
+                            }
+                          >
+                            {opt.label}
+                          </Text>
+                        </TouchableOpacity>
+                      ))}
+                    </View>
+                  </View>
+
+                  {profile.country === 'canada' && (
+                    <View className="mb-4">
+                      <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 mb-2 uppercase">Province variant</Text>
+                      <View className="flex-row flex-wrap gap-2">
+                        {(['ON', 'BC', 'QC'] as CanadaRegionKey[]).map((key) => (
+                          <TouchableOpacity
+                            key={key}
+                            disabled={updatingPrefs}
+                            onPress={() => setCanadaRegionKey(key)}
+                            className={`px-4 py-2 rounded-xl border ${
+                              canadaRegionKey === key
+                                ? 'bg-emerald-600 border-emerald-700'
+                                : 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800/50'
+                            }`}
+                          >
+                            <Text
+                              className={
+                                canadaRegionKey === key ? 'text-white font-bold' : 'text-zinc-800 dark:text-zinc-100 font-bold'
+                              }
+                            >
+                              {key}
+                            </Text>
+                          </TouchableOpacity>
+                        ))}
+                      </View>
+                    </View>
+                  )}
+
+                  <View className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden mb-4">
+                    <TouchableOpacity
+                      onPress={toggleLanguage}
+                      className="p-4 flex-row items-center justify-between border-b border-zinc-100 dark:border-zinc-800"
+                      activeOpacity={0.7}
+                    >
+                      <View className="flex-row items-center">
+                        <Ionicons name="language-outline" size={20} color="#6b7280" />
+                        <Text className="ml-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">Language</Text>
+                      </View>
+                      <View className="bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-full">
+                        <Text className="text-xs font-bold text-zinc-900 dark:text-zinc-100">
+                          {language === 'en' ? 'English' : 'Nepali'}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+
+                    <View className="p-4">
+                      <Text className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Appearance</Text>
+                      <View className="flex-row flex-wrap gap-2">
+                        {(['system', 'light', 'dark'] as const).map((mode) => (
+                          <TouchableOpacity
+                            key={mode}
+                            onPress={() => setThemePreference(mode)}
+                            className={`px-4 py-2 rounded-xl border ${
+                              themePreference === mode
+                                ? 'bg-zinc-900 dark:bg-white border-zinc-900 dark:border-white'
+                                : 'bg-zinc-50 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700'
+                            }`}
+                          >
+                            <Text
+                              className={`font-bold capitalize ${
+                                themePreference === mode ? 'text-white dark:text-zinc-900' : 'text-zinc-800 dark:text-zinc-100'
+                              }`}
+                            >
+                              {mode}
+                            </Text>
+                          </TouchableOpacity>
+                        ))}
+                      </View>
+                    </View>
+                  </View>
+                </>
+              )}
             </View>
 
           </View>

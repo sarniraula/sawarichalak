@@ -1,4 +1,13 @@
-import type { Category, CountryContent, CountryKey, LicenseType, MockTestConfig, Question, StudyMaterial } from '@/types/content';
+import type {
+  Category,
+  CountryContent,
+  CountryKey,
+  LicenseType,
+  MockTestConfig,
+  Question,
+  ReadingLink,
+  StudyMaterial,
+} from '@/types/content';
 import { readJson, writeJson } from '@/services/offlineCache';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -6,6 +15,7 @@ import nepalCategories from '@/countries/nepal/categories.json';
 import nepalStudyMaterials from '@/countries/nepal/studyMaterials.json';
 import { nepalQuestionsData } from '@/countries/nepal/questionsData';
 import nepalMockTests from '@/countries/nepal/mockTests.json';
+import nepalReadingLinks from '@/countries/nepal/readingLinks.json';
 
 import ukCategories from '@/countries/uk/categories.json';
 import ukStudyMaterials from '@/countries/uk/studyMaterials.json';
@@ -27,6 +37,7 @@ const COUNTRY_MODULES: Record<
   {
     categories: Category[];
     studyMaterials: StudyMaterial[];
+    readingLinks?: ReadingLink[];
     questions: Question[];
     mockTests: MockTestConfig[];
   }
@@ -34,6 +45,7 @@ const COUNTRY_MODULES: Record<
   nepal: {
     categories: nepalCategories as any,
     studyMaterials: nepalStudyMaterials as any,
+    readingLinks: nepalReadingLinks as any,
     questions: nepalQuestionsData as any,
     mockTests: nepalMockTests as any,
   },
@@ -57,7 +69,7 @@ const COUNTRY_MODULES: Record<
   },
 };
 
-const CACHE_PREFIX = 'countryContent:v1:';
+const CACHE_PREFIX = 'countryContent:v2:';
 
 function validateMinimal(content: any, country: CountryKey): content is CountryContent {
   return (
@@ -79,6 +91,7 @@ export async function loadCountryContent(country: CountryKey): Promise<CountryCo
     country,
     categories: modules.categories,
     studyMaterials: modules.studyMaterials,
+    ...(modules.readingLinks ? { readingLinks: modules.readingLinks } : {}),
     questions: modules.questions,
     mockTests: modules.mockTests,
   };
@@ -98,6 +111,7 @@ export async function prewarmAllCountries(): Promise<void> {
         country: c,
         categories: COUNTRY_MODULES[c].categories,
         studyMaterials: COUNTRY_MODULES[c].studyMaterials,
+        ...(COUNTRY_MODULES[c].readingLinks ? { readingLinks: COUNTRY_MODULES[c].readingLinks } : {}),
         questions: COUNTRY_MODULES[c].questions,
         mockTests: COUNTRY_MODULES[c].mockTests,
       });

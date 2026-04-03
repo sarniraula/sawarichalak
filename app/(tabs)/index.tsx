@@ -4,10 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useExamStore } from '@/store/examStore';
 import { useProfileStore } from '@/store/profileStore';
+import { useAuthStore } from '@/store/authStore';
 
 export default function HomeScreen() {
   const router = useRouter();
   const { profile } = useProfileStore();
+  const { user } = useAuthStore();
   const { lang, setLanguage, history } = useExamStore();
 
   // Temporary alias to keep existing UI conditions working.
@@ -16,6 +18,8 @@ export default function HomeScreen() {
   const totalTests = history.length;
   const passedTests = history.filter(h => h.passed).length;
 
+  const greetingName = user?.displayName?.trim() || user?.email?.split('@')[0] || (lang === 'en' ? 'there' : 'यहाँ');
+
   return (
     <SafeAreaView className="flex-1 bg-gray-50 dark:bg-zinc-900">
       <ScrollView className="px-6 pt-4 flex-1">
@@ -23,7 +27,7 @@ export default function HomeScreen() {
         <View className="flex-row justify-between items-center mb-8">
           <View>
             <Text className="text-3xl font-bold text-gray-900 dark:text-white">
-              {lang === 'en' ? 'Dashboard' : 'ड्यासबोर्ड'}
+              {lang === 'en' ? `Hi, ${greetingName}` : `नमस्ते, ${greetingName}`}
             </Text>
             <Text className="text-gray-500 dark:text-gray-400 mt-1">
               {profile
