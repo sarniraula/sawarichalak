@@ -1,9 +1,9 @@
-import { useExamStore } from '@/store/examStore';
-import { FontAwesome } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import React, { useEffect } from 'react';
-import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useExamStore } from "@/store/examStore";
+import { FontAwesome } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+import React, { useEffect } from "react";
+import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TestScreen() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function TestScreen() {
     nextQuestion,
     prevQuestion,
     submitTest,
-    quitTest
+    quitTest,
   } = useExamStore();
 
   const language = lang;
@@ -26,13 +26,13 @@ export default function TestScreen() {
   useEffect(() => {
     // If there's no test at all, someone landed here by mistake => redirect to exam tab.
     if (!activeTestId) {
-      router.replace('/(tabs)/exam');
+      router.replace("/(tabs)/exam");
       return;
     }
 
     if (isFinished) {
       // The test is finished, go to results
-      router.replace('/(exam)/results');
+      router.replace("/(exam)/results");
       return;
     }
 
@@ -45,15 +45,25 @@ export default function TestScreen() {
 
   if (!activeTest) {
     return (
-      <SafeAreaView style={{ flex: 1 }} className="bg-zinc-50 dark:bg-zinc-950 items-center justify-center">
-        <Text className="text-zinc-500 dark:text-zinc-400">Loading exam...</Text>
+      <SafeAreaView
+        style={{ flex: 1 }}
+        className="bg-zinc-50 dark:bg-zinc-950 items-center justify-center"
+      >
+        <Text className="text-zinc-500 dark:text-zinc-400">
+          Loading exam...
+        </Text>
       </SafeAreaView>
     );
   }
   if (activeTest.isFinished) {
     return (
-      <SafeAreaView style={{ flex: 1 }} className="bg-zinc-50 dark:bg-zinc-950 items-center justify-center">
-        <Text className="text-zinc-500 dark:text-zinc-400">Redirecting to results...</Text>
+      <SafeAreaView
+        style={{ flex: 1 }}
+        className="bg-zinc-50 dark:bg-zinc-950 items-center justify-center"
+      >
+        <Text className="text-zinc-500 dark:text-zinc-400">
+          Redirecting to results...
+        </Text>
       </SafeAreaView>
     );
   }
@@ -62,8 +72,13 @@ export default function TestScreen() {
   // Safe fallback if questions array is somehow missing
   if (!currentQ) {
     return (
-      <SafeAreaView style={{ flex: 1 }} className="bg-zinc-50 dark:bg-zinc-950 items-center justify-center">
-        <Text className="text-red-500">Error: Could not load question data.</Text>
+      <SafeAreaView
+        style={{ flex: 1 }}
+        className="bg-zinc-50 dark:bg-zinc-950 items-center justify-center"
+      >
+        <Text className="text-red-500">
+          Error: Could not load question data.
+        </Text>
       </SafeAreaView>
     );
   }
@@ -71,51 +86,66 @@ export default function TestScreen() {
 
   const handleQuit = () => {
     Alert.alert(
-      language === 'en' ? 'Quit Test?' : 'परीक्षा छोड्नुहुने हो?',
-      language === 'en' ? 'All progress will be lost.' : 'सबै प्रगति मेटिनेछ।',
+      language === "en" ? "Quit Test?" : "परीक्षा छोड्नुहुने हो?",
+      language === "en" ? "All progress will be lost." : "सबै प्रगति मेटिनेछ।",
       [
-        { text: language === 'en' ? 'Cancel' : 'रद्द', style: 'cancel' },
+        { text: language === "en" ? "Cancel" : "रद्द", style: "cancel" },
         {
-          text: language === 'en' ? 'Quit' : 'छोड्नुहोस्', style: 'destructive', onPress: () => {
+          text: language === "en" ? "Quit" : "छोड्नुहोस्",
+          style: "destructive",
+          onPress: () => {
             quitTest();
-            router.replace('/(tabs)/exam');
-          }
-        }
-      ]
+            router.replace("/(tabs)/exam");
+          },
+        },
+      ],
     );
   };
 
   const handleSubmit = () => {
     Alert.alert(
-      language === 'en' ? 'Submit Test?' : 'परीक्षा बुझाउनुहुने हो?',
-      language === 'en' ? 'Are you sure you want to finish?' : 'के तपाइँ परीक्षा समाप्त गर्न चाहनुहुन्छ?',
+      language === "en" ? "Submit Test?" : "परीक्षा बुझाउनुहुने हो?",
+      language === "en"
+        ? "Are you sure you want to finish?"
+        : "के तपाइँ परीक्षा समाप्त गर्न चाहनुहुन्छ?",
       [
-        { text: language === 'en' ? 'Review' : 'मूल्याङ्कन', style: 'cancel' },
-        { text: language === 'en' ? 'Submit' : 'बुझाउनुहोस्', style: 'default', onPress: () => submitTest() }
-      ]
+        { text: language === "en" ? "Review" : "मूल्याङ्कन", style: "cancel" },
+        {
+          text: language === "en" ? "Submit" : "बुझाउनुहोस्",
+          style: "default",
+          onPress: () => submitTest(),
+        },
+      ],
     );
   };
 
   const formatTime = (seconds: number) => {
-    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
-    const s = (seconds % 60).toString().padStart(2, '0');
+    const m = Math.floor(seconds / 60)
+      .toString()
+      .padStart(2, "0");
+    const s = (seconds % 60).toString().padStart(2, "0");
     return `${m}:${s}`;
   };
 
-  const getLangValue = (obj: any) => obj[language] || obj['en'];
+  const getLangValue = (obj: any) => obj[language] || obj["en"];
 
   return (
     <SafeAreaView className="flex-1 bg-zinc-50 dark:bg-zinc-950">
       <View className="flex-row items-center justify-between px-6 py-4 border-b border-zinc-200 dark:border-zinc-800/50">
-        <TouchableOpacity onPress={handleQuit} className="w-10 h-10 items-center justify-center bg-zinc-200 dark:bg-zinc-800 rounded-full">
+        <TouchableOpacity
+          onPress={handleQuit}
+          className="w-10 h-10 items-center justify-center bg-zinc-200 dark:bg-zinc-800 rounded-full"
+        >
           <FontAwesome name="times" size={18} color="#9ca3af" />
         </TouchableOpacity>
 
         <View className="items-center">
           <Text className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-1">
-            {language === 'en' ? 'Time Left' : 'बाँकी समय'}
+            {language === "en" ? "Time Left" : "बाँकी समय"}
           </Text>
-          <Text className={`text-xl font-bold ${activeTest.timeLeftSeconds < 300 ? 'text-red-500' : 'text-zinc-900 dark:text-zinc-100'}`}>
+          <Text
+            className={`text-xl font-bold ${activeTest.timeLeftSeconds < 300 ? "text-red-500" : "text-zinc-900 dark:text-zinc-100"}`}
+          >
             {formatTime(activeTest.timeLeftSeconds)}
           </Text>
         </View>
@@ -136,44 +166,54 @@ export default function TestScreen() {
         </Text>
 
         <View className="space-y-4 mb-20">
-          {currentQ.options.map(opt => {
+          {currentQ.options.map((opt) => {
             const isSelected = selectedOption === opt.id;
             return (
               <TouchableOpacity
                 key={opt.id}
                 onPress={() => answerQuestion(currentQ.id, opt.id)}
-                className={`p-5 mb-4 rounded-2xl border-2 flex-row items-center shadow-sm ${isSelected
-                  ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                  : 'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900'
-                  }`}
+                className={`p-5 mb-4 rounded-2xl border-2 flex-row items-center shadow-sm ${
+                  isSelected
+                    ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                    : "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
+                }`}
               >
-                <View className={`w-6 h-6 rounded-full border-2 items-center justify-center mr-4 ${isSelected ? 'border-blue-500 bg-blue-500' : 'border-zinc-300 dark:border-zinc-600'
-                  }`}>
-                  {isSelected && <FontAwesome name="check" size={10} color="white" />}
+                <View
+                  className={`w-6 h-6 rounded-full border-2 items-center justify-center mr-4 ${
+                    isSelected
+                      ? "border-blue-500 bg-blue-500"
+                      : "border-zinc-300 dark:border-zinc-600"
+                  }`}
+                >
+                  {isSelected && (
+                    <FontAwesome name="check" size={10} color="white" />
+                  )}
                 </View>
-                <Text className={`text-lg flex-1 leading-snug ${isSelected ? 'text-blue-700 dark:text-blue-300 font-bold' : 'text-zinc-700 dark:text-zinc-300 font-medium'}`}>
+                <Text
+                  className={`text-lg flex-1 leading-snug ${isSelected ? "text-blue-700 dark:text-blue-300 font-bold" : "text-zinc-700 dark:text-zinc-300 font-medium"}`}
+                >
                   {getLangValue(opt)}
                 </Text>
               </TouchableOpacity>
-            )
+            );
           })}
         </View>
 
-        {selectedOption && (
+        {/* {selectedOption && (
           <View className="bg-white dark:bg-zinc-900 rounded-3xl p-5 border border-zinc-200 dark:border-zinc-800/50 mb-20">
             <Text className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-2">
               {language === 'en' ? 'Explanation' : 'व्याख्या'}
             </Text>
             <Text className="text-zinc-800 dark:text-zinc-100 leading-relaxed">{getLangValue(currentQ.explanation)}</Text>
           </View>
-        )}
+        )} */}
       </ScrollView>
 
       <View className="absolute bottom-0 w-full bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/80 px-6 py-5 flex-row justify-between items-center pb-8">
         <TouchableOpacity
           onPress={prevQuestion}
           disabled={activeTest.currentIndex === 0}
-          className={`px-6 py-4 rounded-xl flex-row items-center border border-zinc-200 dark:border-zinc-800 ${activeTest.currentIndex === 0 ? 'opacity-50' : 'bg-zinc-50 dark:bg-zinc-800 active:bg-zinc-100 dark:active:bg-zinc-700'}`}
+          className={`px-6 py-4 rounded-xl flex-row items-center border border-zinc-200 dark:border-zinc-800 ${activeTest.currentIndex === 0 ? "opacity-50" : "bg-zinc-50 dark:bg-zinc-800 active:bg-zinc-100 dark:active:bg-zinc-700"}`}
         >
           <FontAwesome name="chevron-left" size={16} color="#6b7280" />
         </TouchableOpacity>
@@ -183,14 +223,18 @@ export default function TestScreen() {
             onPress={handleSubmit}
             className="flex-1 bg-green-600 active:bg-green-700 ml-4 py-4 rounded-xl items-center shadow-lg shadow-green-600/30"
           >
-            <Text className="text-white font-bold text-lg tracking-wide">{language === 'en' ? 'Submit' : 'बुझाउनुहोस्'}</Text>
+            <Text className="text-white font-bold text-lg tracking-wide">
+              {language === "en" ? "Submit" : "बुझाउनुहोस्"}
+            </Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
             onPress={nextQuestion}
             className="flex-1 bg-blue-600 active:bg-blue-700 ml-4 py-4 rounded-xl items-center shadow-lg shadow-blue-600/30"
           >
-            <Text className="text-white font-bold text-lg tracking-wide">{language === 'en' ? 'Next Question' : 'अर्को'}</Text>
+            <Text className="text-white font-bold text-lg tracking-wide">
+              {language === "en" ? "Next Question" : "अर्को"}
+            </Text>
           </TouchableOpacity>
         )}
       </View>

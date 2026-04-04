@@ -10,7 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sarniraula.sawarichalak"
+      "bundleIdentifier": "com.sarniraula.sawarichalak",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.sarniraula.sawarichalak",
@@ -46,6 +49,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "937e2010-cd6e-4c8f-8a86-072083aa4538"
+      }
     }
   }
 }
